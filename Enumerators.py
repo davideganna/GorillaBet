@@ -4,9 +4,9 @@ class Squadra:
 
 class Esito:
     """Descrive chi vince"""
-    Parita = 0
-    Ospitante = 1
-    Ospite = 2
+    Draw = 0
+    HomeWon = 1
+    AwayWon = 2
 
 
     
