@@ -1,7 +1,4 @@
-from dataclasses import dataclass
-
-@dataclass
-class Row:
+class Row(object):
     """Classe per la descrizione della singola riga"""
     div: str
     """Divisione nella lega"""

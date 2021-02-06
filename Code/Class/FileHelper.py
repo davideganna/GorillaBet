@@ -1,1 +1,0 @@
-#File helper con tutte le funzioni che serviranno per l'apertura e la lettura dei file da cui estrarre i dati
