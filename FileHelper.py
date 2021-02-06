@@ -12,7 +12,6 @@ _FILE_PATH = "SourceFiles\\"
 class FileHelper(object):
     @staticmethod
     def GetRowsFromFiles() -> list[Row]:
-        print("Ciao")
         result:list[Row]  = []
         for file in _FILE_LIST_:
             fullPath = _FILE_PATH + file
