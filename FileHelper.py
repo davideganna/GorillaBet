@@ -26,7 +26,6 @@ class FileHelper(object):
                     if  isFirst != True:
                         newElement = FileHelper.Mapping(fistRow, r)
                         result.append(newElement)
-                        print(json.dumps(newElement.__dict__))
                     else:
                         fistRow = r
                         isFirst = False

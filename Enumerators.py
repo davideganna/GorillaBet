@@ -1,0 +1,2 @@
+class Squadra:
+    Juventus = "Juventus"
