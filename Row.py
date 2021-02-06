@@ -1,3 +1,6 @@
+from Partita import Partita 
+from datetime import datetime
+
 class Row(object):
     """Classe per la descrizione della singola riga"""
     div: str
@@ -58,3 +61,16 @@ class Row(object):
     """Numero di cartellini totali della squadra ospitante, 10 = giallo, 25 = rosso"""
     ABP:str
     """Numero di cartellini totali della squadra ospite, 10 = giallo, 25 = rosso"""
+
+    def GetPartita(self) -> Partita :
+        partita = Partita()
+        partita.Lega = self.div
+        partita.DataPartita = Row.GetDataPartita(self.date, self.time)
+
+        return partita
+
+    @staticmethod
+    def GetDataPartita(data, orario) -> datetime:
+        dataParsed = data.split('/')
+        timeSplit = orario.split(':')
+        return datetime(dataParsed[2], dataParsed[1], dataParsed[0], timeSplit[1], timeSplit[0])
