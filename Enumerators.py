@@ -14,12 +14,36 @@ class Squadra:
     Spezia = "Spezia"
     Napoli = "Napoli"
     Verona = "Verona"
-    Crotone = "Crotona"
+    Crotone = "Crotone"
     Roma = "Roma"
     Bologna = "Bologna"
     Benevento = "Benevento"
     Udinese = "Udinese"
     Lazio = "Lazio"
+
+# Penso sia meglio fare una lista perche dobbiamo iterare
+SquadraList = [
+    "Juventus",
+    "Fiorentina",
+    "Verona",
+    "Parma",
+    "Genoa",
+    "Sassuolo",
+    "Milan",
+    "Torino",
+    "Cagliari",
+    "Sampdoria",
+    "Inter",
+    "Spezia",
+    "Napoli",
+    "Verona",
+    "Crotone",
+    "Roma",
+    "Bologna",
+    "Benevento",
+    "Udinese",
+    "Lazio"
+]
 
 
 class Esito:
