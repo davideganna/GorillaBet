@@ -13,26 +13,26 @@ class FileHelper(object):
     @staticmethod
     def GetRowsFromFiles() -> list[Row]:
         print("Ciao")
-        result :list[Row]  = []
+        result:list[Row]  = []
         for file in _FILE_LIST_:
             fullPath = _FILE_PATH + file
             #inserire un controllo se il file esiste o meno
             with open(fullPath) as sourceFile:
                 sourceFile = csv.reader(sourceFile, delimiter=',')
                 isFirst = True
-                fistRow = ""
+                firstRow = ""
                 for r in sourceFile:
                     #va modellizato il nuovo elemento e salvato in result
                     if  isFirst != True:
-                        newElement = FileHelper.Mapping(fistRow, r)
+                        newElement = FileHelper.Mapping(firstRow, r)
                         result.append(newElement)
                     else:
-                        fistRow = r
+                        firstRow = r
                         isFirst = False
         return result
 
     @staticmethod
-    def Mapping(fistRow, r) -> Row:
+    def Mapping(firstRow, r) -> Row:
         newElement = Row()
         #da rivedere nel caso i merdoni del file cambiano la struttura del file nella remota possibilità
         #per Davide: si, sono un merdone
