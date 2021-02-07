@@ -30,8 +30,4 @@ for p in partite:
     squadraAway.PartiteGiocate.append(p)
 #######################
 
-print_squadre(squadre)
-
-
-juventus:Squadra =  Helper.GetSquadraFromNome(squadre, SquadraEnum.Juventus)
-juventus.GetGoalFattiInCasa()
+create_matrix()

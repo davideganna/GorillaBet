@@ -46,7 +46,6 @@ SquadraList:list[SquadraEnum] = [
     SquadraEnum.Atalanta,
 ]
 
-
 class Esito:
     """Descrive chi vince"""
     Draw = 0
