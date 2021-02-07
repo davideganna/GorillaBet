@@ -21,9 +21,9 @@ class Row(object):
     FTR: str
     """Squadra vincente, H = team in casa, D = parità, A = team ospite"""
     HTHG: str 
-    """Risultato squadra in casa a primo tempo"""
+    """Risultato squadra in casa primo tempo"""
     HTAG: str 
-    """Risultato squadra ospite a primo tempo"""
+    """Risultato squadra ospite primo tempo"""
     HTR: str
     """"Squadra vincente a fine primo tempo, H = team in casa, D = parità, A = team ospite"""
     HS: str
@@ -133,7 +133,7 @@ class Row(object):
             return SquadraEnum.ERRORE
 
     @staticmethod
-    def GetEsito(text) ->int:
+    def GetEsito(text) -> int:
         if not text:
             return Esito.Draw
         elif text == "H":
