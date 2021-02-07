@@ -47,3 +47,34 @@ class Squadra(object):
         for p in matchAway:
             if p.EsitoFinale == Esito.HomeWon:
                 result.append(p)
+
+    #goal fatti e subiti in casa e fuori casa
+    def GetGoalFattiInCasa(self) -> int:
+        match = self.GetPartiteWhereHome(self)
+        result:int = 0
+        p: Partita
+        for p in match:
+            result+=p.GoalFinaliHome
+        return result
+    def GetGoalFattiAway(self) -> int:
+        match = self.GetPartiteWhereAway(self)
+        result:int = 0
+        p: Partita
+        for p in match:
+            result+=p.GoalFinaliAway
+        return result
+    def GetGoalSubitiInCasa(self) -> int:
+        match = self.GetPartiteWhereHome(self)
+        result:int = 0
+        p: Partita
+        for p in match:
+            result+=p.GoalFinaliAway
+        return result
+
+    def GetGoalSubitiAway(self) -> int:
+        match = self.GetPartiteWhereAway(self)
+        result:int = 0
+        p: Partita
+        for p in match:
+            result+=p.GoalFinaliHome
+        return result
