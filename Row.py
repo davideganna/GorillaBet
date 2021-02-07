@@ -145,4 +145,6 @@ class Row(object):
     
     @staticmethod
     def GetGoals(text) -> int:
+        if not text:
+            return None
         return int(text)
