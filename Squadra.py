@@ -25,8 +25,8 @@ class Squadra(object):
         return filteredMatches
 
     def GetPartiteWhereWon(self) -> list[Partita]:
-        matchHome = self.GetPartiteWhereHome(self)
-        matchAway = self.GetPartiteWhereAway(self)
+        matchHome = self.GetPartiteWhereHome()
+        matchAway = self.GetPartiteWhereAway()
         result: list[Partita]
         p : Partita
         for p in matchHome:
@@ -37,8 +37,8 @@ class Squadra(object):
                 result.append(p)
 
     def GetPartiteWhereLost(self) -> list[Partita]:
-        matchHome = self.GetPartiteWhereHome(self)
-        matchAway = self.GetPartiteWhereAway(self)
+        matchHome = self.GetPartiteWhereHome()
+        matchAway = self.GetPartiteWhereAway()
         result: list[Partita]
         p : Partita
         for p in matchHome:
@@ -50,21 +50,21 @@ class Squadra(object):
 
     #goal fatti e subiti in casa e fuori casa
     def GetGoalFattiInCasa(self) -> int:
-        match = self.GetPartiteWhereHome(self)
+        match = self.GetPartiteWhereHome()
         result:int = 0
         p: Partita
         for p in match:
             result+=p.GoalFinaliHome
         return result
     def GetGoalFattiAway(self) -> int:
-        match = self.GetPartiteWhereAway(self)
+        match = self.GetPartiteWhereAway()
         result:int = 0
         p: Partita
         for p in match:
             result+=p.GoalFinaliAway
         return result
     def GetGoalSubitiInCasa(self) -> int:
-        match = self.GetPartiteWhereHome(self)
+        match = self.GetPartiteWhereHome()
         result:int = 0
         p: Partita
         for p in match:
@@ -72,7 +72,7 @@ class Squadra(object):
         return result
 
     def GetGoalSubitiAway(self) -> int:
-        match = self.GetPartiteWhereAway(self)
+        match = self.GetPartiteWhereAway()
         result:int = 0
         p: Partita
         for p in match:

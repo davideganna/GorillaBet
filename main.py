@@ -34,3 +34,4 @@ print_squadre(squadre)
 
 
 juventus:Squadra =  Helper.GetSquadraFromNome(squadre, SquadraEnum.Juventus)
+juventus.GetGoalFattiInCasa()
