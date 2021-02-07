@@ -33,3 +33,4 @@ for p in partite:
 print_squadre(squadre)
 
 
+juventus:Squadra =  Helper.GetSquadraFromNome(squadre, SquadraEnum.Juventus)
