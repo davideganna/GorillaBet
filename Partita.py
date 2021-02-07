@@ -8,4 +8,5 @@ class Partita(object):
     DataPartita:datetime
     SquadraOspitante:Squadra
     SquadraOspite:Squadra
+    Vincitore:Esito
     

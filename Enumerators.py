@@ -20,6 +20,7 @@ class Squadra:
     Benevento = "Benevento"
     Udinese = "Udinese"
     Lazio = "Lazio"
+    ERRORE = "0"
 
 class Esito:
     """Descrive chi vince"""
