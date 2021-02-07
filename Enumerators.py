@@ -23,12 +23,6 @@ class SquadraEnum:
     Atalanta = "Atalanta"
     ERRORE = "0"
 
-class Esito:
-    """Descrive chi vince"""
-    Parita = 0
-    Ospitante = 1
-    Ospite = 2
-
 # Penso sia meglio fare una lista perche dobbiamo iterare. RM: Si, ma usa gli enumeratori
 SquadraList:list[SquadraEnum] = [
     SquadraEnum.Juventus,
