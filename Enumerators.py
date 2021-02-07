@@ -30,12 +30,11 @@ class Esito:
 
 # Penso sia meglio fare una lista perche dobbiamo iterare. RM: Si, ma usa gli enumeratori
 SquadraList:List[Squadra] = [
-    """Lista con tutte le squadre partecipanti"""
     Squadra.Juventus,
-    Squadra.Fiorentina,,
+    Squadra.Fiorentina,
     Squadra.Verona,
     Squadra.Parma,
-    Squadra.Genoa,,
+    Squadra.Genoa,
     Squadra.Sassuolo,
     Squadra.Milan,
     Squadra.Torino,

@@ -1,24 +1,25 @@
 from FileHelper import FileHelper
 from Row import Row
 from Enumerators import *
+from Partita import Partita 
 
 #Fase 1 Aprire i file sorgente e ottenerne la struttura dati per ogni riga
-
-#forse l'idea delle classi è diversa in python?
-# Esempio per Juventus
 rows:list[Row] = FileHelper.GetRowsFromFiles()
+#conversione in una più cristiana variabile partita
+partite:list[Partita] = []
+r:Row
+for r in rows:
+    partite.append(r.GetPartita())
+######################################
 
-juveIn : list[Row] = []
 
-
-###################### Test - Jay ######################
+###################### Test - Jay ###################### Usa un file e una classe apposita, non sporchiamo qui!
 
 GFc = 0 # GFc = Goals fatti in casa
 GSc = 0 # GSc = Goals subiti in casa
 GFt = 0 # GFt = Goals fatti in trasferta
 GSt = 0 # GSt = Goals subiti in trasferta
 
-r: Row
 
 for squadra in SquadraList:
     print(f"\n --- Storico Goals {squadra} --- \n")
