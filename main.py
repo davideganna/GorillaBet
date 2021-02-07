@@ -33,4 +33,3 @@ for p in partite:
 print_squadre(squadre)
 
 
-
