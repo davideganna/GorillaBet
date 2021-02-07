@@ -6,13 +6,13 @@ class Partita(object):
     Lega: str
     """Divisione nella lega"""
     DataPartita:datetime
-    SquadraOspitante:Squadra
-    SquadraOspite:Squadra
+    SquadraHome:str
+    SquadraAway:str
     EsitoFinale:Esito
     EsitoPrimoTempo:Esito
-    GoalPrimoTempoOspitante:int
-    GoalPrimoTempoOspite:int
-    GoalFinaliOspitante:int
-    GoalFinaliOspite:int
+    GoalPrimoTempoHome:int
+    GoalPrimoTempoAway:int
+    GoalFinaliHome:int
+    GoalFinaliAway:int
 
     

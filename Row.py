@@ -63,84 +63,86 @@ class Row(object):
     ABP:str
     """Numero di cartellini totali della squadra ospite, 10 = giallo, 25 = rosso"""
 
-    def GetPartita(self:Row) -> Partita :
+    def GetPartita(self) -> Partita :
         partita:Parita = Partita()
         partita.Lega = self.div
         partita.DataPartita = Row.GetDataPartita(self.date, self.time)
-        partita.SquadraOspitante = Row.GetSquadraFromString(self.homeTeam)
-        partita.SquadraOspite = Row.GetSquadraFromString(self.awayTeam)
+        partita.SquadraHome = Row.GetSquadraFromString(self.homeTeam)
+        partita.SquadraAway = Row.GetSquadraFromString(self.awayTeam)
         partita.EsitoFinale = Row.GetEsito(self.FTR)
         partita.EsitoPrimoTempo = Row.GetEsito(self.HTR)
-        partita.GoalPrimoTempoOspitante = Row.GetGoals(self.HTHG)
-        partita.GoalPrimoTempoOspite = Row.GetGoals(self.HTAG)
-        partita.GoalFinaliOspitante = Row.GetGoals(self.FTHG)
-        partita.GoalPrimoTempoOspite = Row.GetGoals(self.FTAG)
+        partita.GoalPrimoTempoHome = Row.GetGoals(self.HTHG)
+        partita.GoalPrimoTempoAway = Row.GetGoals(self.HTAG)
+        partita.GoalFinaliHome = Row.GetGoals(self.FTHG)
+        partita.GoalPrimoTempoAway = Row.GetGoals(self.FTAG)
         return partita
 
     @staticmethod
     def GetDataPartita(data, orario) -> datetime:
         dataParsed = data.split('/')
         timeSplit = orario.split(':')
-        return datetime(dataParsed[2], dataParsed[1], dataParsed[0], timeSplit[1], timeSplit[0])
+        return datetime(int(dataParsed[2]), int(dataParsed[1]), int(dataParsed[0]), int(timeSplit[0]), int(timeSplit[1]))
 
     @staticmethod
-    def GetDataPartita(squad) -> Squadra:
+    def GetSquadraFromString(squad) -> SquadraEnum:
         if not squad:
-            return Squadra.ERRORE
+            return SquadraEnum.ERRORE
         elif squad.lower() == "juventus":
-            return Squadra.Juventus
+            return SquadraEnum.Juventus
         elif squad.lower() == "fiorentina":
-            return Squadra.Fiorentina
+            return SquadraEnum.Fiorentina
         elif squad.lower() == "verona":
-            return Squadra.Verona  
+            return SquadraEnum.Verona  
         elif squad.lower() == "parma":
-            return Squadra.Parma  
+            return SquadraEnum.Parma  
         elif squad.lower() == "genoa":
-            return Squadra.Genoa   
+            return SquadraEnum.Genoa   
         elif squad.lower() == "sassuolo":
-            return Squadra.Sassuolo   
+            return SquadraEnum.Sassuolo   
         elif squad.lower() == "milan":
-            return Squadra.Milan   
+            return SquadraEnum.Milan   
         elif squad.lower() == "torino":
-            return Squadra.Torino   
+            return SquadraEnum.Torino   
         elif squad.lower() == "cagliari":
-            return Squadra.Cagliari   
+            return SquadraEnum.Cagliari   
         elif squad.lower() == "sampdoria":
-            return Squadra.Sampdoria   
+            return SquadraEnum.Sampdoria   
         elif squad.lower() == "inter":
-            return Squadra.Inter   
+            return SquadraEnum.Inter   
         elif squad.lower() == "spezia":
-            return Squadra.Spezia   
+            return SquadraEnum.Spezia   
         elif squad.lower() == "napoli":
-            return Squadra.Napoli   
+            return SquadraEnum.Napoli   
         elif squad.lower() == "verona":
-            return Squadra.Verona   
+            return SquadraEnum.Verona   
         elif squad.lower() == "crotone":
-            return Squadra.Crotone   
+            return SquadraEnum.Crotone   
         elif squad.lower() == "roma":
-            return Squadra.Roma   
+            return SquadraEnum.Roma   
         elif squad.lower() == "bologna":
-            return Squadra.Bologna
+            return SquadraEnum.Bologna
         elif squad.lower() == "benevento":
-            return Squadra.Benevento
+            return SquadraEnum.Benevento
         elif squad.lower() == "udinese":
-            return Squadra.Udinese
+            return SquadraEnum.Udinese
         elif squad.lower() == "lazio":
-            return Squadra.Lazio
+            return SquadraEnum.Lazio
+        elif squad.lower() == "atalanta":
+            return SquadraEnum.Atalanta
         else:
-            return Squadra.ERRORE
+            return SquadraEnum.ERRORE
 
     @staticmethod
-    def GetEsito(text) -> Esito:
+    def GetEsito(text) ->int:
         if not text:
-            return Esito.Parita
+            return Esito.Draw
         elif text == "H":
             return Esito.HomeWon
         elif text == "A":
             return Esito.AwayWon
         else:
-            return Esito.Parita
+            return Esito.Draw
     
     @staticmethod
     def GetGoals(text) -> int:
-        return
+        return 0
