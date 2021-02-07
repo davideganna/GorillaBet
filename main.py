@@ -25,7 +25,8 @@ p:Partita
 for p in partite:
     squadraHome:Squadra = Helper.GetSquadraFromNome(squadre, p.SquadraHome)
     squadraAway:Squadra = Helper.GetSquadraFromNome(squadre, p.SquadraAway)
-    print(squadraAway.Nome)
+    squadraHome.PartiteGiocate.append(p)
+    squadraAway.PartiteGiocate.append(p)
 #######################
 
 
