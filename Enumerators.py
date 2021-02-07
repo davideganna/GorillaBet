@@ -13,7 +13,6 @@ class SquadraEnum:
     Inter = "Inter"
     Spezia = "Spezia"
     Napoli = "Napoli"
-    Verona = "Verona"
     Crotone = "Crotone"
     Roma = "Roma"
     Bologna = "Bologna"
@@ -38,7 +37,6 @@ SquadraList:list[SquadraEnum] = [
     SquadraEnum.Inter,
     SquadraEnum.Spezia,
     SquadraEnum.Napoli,
-    SquadraEnum.Verona,
     SquadraEnum.Crotone,
     SquadraEnum.Roma,
     SquadraEnum.Bologna,
