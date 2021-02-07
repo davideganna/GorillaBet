@@ -1,49 +1,48 @@
 class SquadraEnum:
     """Enumeratore per il nome delle squadre"""
-    Juventus = "Juventus"
-    Fiorentina = "Fiorentina"
-    Verona = "Verona"
-    Parma = "Parma"
-    Genoa = "Genoa"
-    Sassuolo = "Sassuolo"
-    Milan = "Milan"
-    Torino = "Torino"
-    Cagliari = "Cagliari"
-    Sampdoria = "Sampdoria"
-    Inter = "Inter"
-    Spezia = "Spezia"
-    Napoli = "Napoli"
-    Crotone = "Crotone"
-    Roma = "Roma"
-    Bologna = "Bologna"
-    Benevento = "Benevento"
-    Udinese = "Udinese"
-    Lazio = "Lazio"
     Atalanta = "Atalanta"
-    ERRORE = "0"
+    Benevento = "Benevento"
+    Bologna = "Bologna"
+    Cagliari = "Cagliari"
+    Crotone = "Crotone"
+    Fiorentina = "Fiorentina"
+    Genoa = "Genoa"
+    Inter = "Inter"
+    Juventus = "Juventus"
+    Lazio = "Lazio"
+    Milan = "Milan"
+    Napoli = "Napoli"
+    Parma = "Parma"
+    Roma = "Roma"
+    Sampdoria = "Sampdoria"
+    Sassuolo = "Sassuolo"
+    Spezia = "Spezia"
+    Torino = "Torino"
+    Udinese = "Udinese"
+    Verona = "Verona"
 
 # Penso sia meglio fare una lista perche dobbiamo iterare. RM: Si, ma usa gli enumeratori
 SquadraList:list[SquadraEnum] = [
-    SquadraEnum.Juventus,
-    SquadraEnum.Fiorentina,
-    SquadraEnum.Verona,
-    SquadraEnum.Parma,
-    SquadraEnum.Genoa,
-    SquadraEnum.Sassuolo,
-    SquadraEnum.Milan,
-    SquadraEnum.Torino,
-    SquadraEnum.Cagliari,
-    SquadraEnum.Sampdoria,
-    SquadraEnum.Inter,
-    SquadraEnum.Spezia,
-    SquadraEnum.Napoli,
-    SquadraEnum.Crotone,
-    SquadraEnum.Roma,
-    SquadraEnum.Bologna,
-    SquadraEnum.Benevento,
-    SquadraEnum.Udinese,
-    SquadraEnum.Lazio,
     SquadraEnum.Atalanta,
+    SquadraEnum.Benevento,
+    SquadraEnum.Bologna,
+    SquadraEnum.Cagliari,
+    SquadraEnum.Crotone,
+    SquadraEnum.Fiorentina,
+    SquadraEnum.Genoa,
+    SquadraEnum.Inter,
+    SquadraEnum.Juventus,
+    SquadraEnum.Lazio,
+    SquadraEnum.Milan,
+    SquadraEnum.Napoli,
+    SquadraEnum.Parma,
+    SquadraEnum.Roma,
+    SquadraEnum.Sampdoria,
+    SquadraEnum.Sassuolo,
+    SquadraEnum.Spezia,
+    SquadraEnum.Torino,
+    SquadraEnum.Udinese,
+    SquadraEnum.Verona
 ]
 
 class Esito:

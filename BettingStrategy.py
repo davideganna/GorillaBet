@@ -30,34 +30,22 @@ def create_matrix():
     for n, squadra in enumerate(SquadraList):
         for r in rows:
             if r.homeTeam == squadra:
-                #print(f"Goals in casa contro il {r.awayTeam}: {r.FTHG}")
                 GFc = GFc + int(r.FTHG)
                 GSc = GSc + int(r.FTAG)
             elif r.awayTeam == squadra:
-                #print(f"Goals in trasferta contro il {r.homeTeam}: {r.FTAG}")
                 GFt = GFt + int(r.FTAG)
                 GSt = GSt + int(r.FTHG)
         
-
-        #print("\n --- Totale Goals --- \n")
-        #print(f"Totale Goals fatti in casa: {GFc}")
-        #print(f"Totale Goals subiti in casa: {GSc}")
-        #print(f"Totale Goals fatti in trasferta: {GFt}")
-        #print(f"Totale Goals subiti in trasferta: {GSt}")
-
-        #print("\n --- Total Strength / Weakness --- \n")
         try:
-            attack_strength  = (GFc + GFt)/(GFc + GFt + GSc + GSt)
+            attack_strength  = round((GFc + GFt)/(GFc + GFt + GSc + GSt), 3)
         except ZeroDivisionError:
             attack_strength = None
 
         try:
-            defence_weakness = (GSc + GSt)/(GFc + GFt + GSc + GSt)
+            defence_weakness = round((GSc + GSt)/(GFc + GFt + GSc + GSt), 3)
         except ZeroDivisionError:
             defence_weakness = None
 
-        #print(f"{squadra} Attack Strength:  {attack_strength:.5f}")
-        #print(f"{squadra} Defence Weakness: {defence_weakness:.5f}")
         M[n, 0] = squadra
         M[n, 1] = GFc
         M[n, 2] = GFt
@@ -66,14 +54,14 @@ def create_matrix():
         M[n, 5] = attack_strength
         M[n, 6] = defence_weakness
 
-        M[1,:].round(3)
+        
 
         GFc = 0 # GFc = Goals fatti in casa
         GSc = 0 # GSc = Goals subiti in casa
         GFt = 0 # GFt = Goals fatti in trasferta
         GSt = 0 # GSt = Goals subiti in trasferta
 
-    x = PrettyTable(["Squadra", "GFc", "GFt", "GSc", "GSt", "AttF", "DefW"])
+    x = PrettyTable(["Squadra", "GFc", "GFt", "GSc", "GSt", "AttS", "DefW"])
     for row in M:
         x.add_row(row)
     print(x)
