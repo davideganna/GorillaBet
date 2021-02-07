@@ -67,7 +67,7 @@ class Squadra(object):
         match = self.GetPartiteWhereHome()
         result:int = 0
         p: Partita
-        for p in match:
+        for p in match: 
             result+=p.GoalFinaliAway
         return result
 
