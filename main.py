@@ -5,22 +5,16 @@ from Partita import Partita
 from Squadra import Squadra
 from Helper import Helper
 from BettingStrategy import *
-
-#Fase 1 Aprire i file sorgente e ottenerne la struttura dati per ogni riga
+from ReadableBettingStrategy import ReadableBettingStrategy
 rows:list[Row] = FileHelper.GetRowsFromFiles()
-#conversione in una più cristiana variabile partita
 partite:list[Partita] = []
 r:Row
 for r in rows:
     partite.append(r.GetPartita())
-######################################
-
-#Mapping delle squadre
 squadre: list[Squadra] = []
 sE: SquadraEnum
 for s in SquadraList:
-    newSquadra:Squadra = Squadra()
-    newSquadra.Nome = s
+    newSquadra:Squadra = Squadra(s)
     squadre.append(newSquadra)
 p:Partita
 for p in partite:
@@ -28,6 +22,6 @@ for p in partite:
     squadraAway:Squadra = Helper.GetSquadraFromNome(squadre, p.SquadraAway)
     squadraHome.PartiteGiocate.append(p)
     squadraAway.PartiteGiocate.append(p)
-#######################
-
+    print(len(squadraHome.PartiteGiocate))
 create_matrix()
+ReadableBettingStrategy.CalculateStats(squadre)
