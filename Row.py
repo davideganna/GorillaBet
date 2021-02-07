@@ -145,4 +145,4 @@ class Row(object):
     
     @staticmethod
     def GetGoals(text) -> int:
-        return 0
+        return int(text)

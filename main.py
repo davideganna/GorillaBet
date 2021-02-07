@@ -71,4 +71,3 @@ printNome(squadre)
     #print(f"{squadra} Attack Strength:  {attack_strength:.5f}")
     #print(f"{squadra} Defence Weakness: {defence_weakness:.5f}")
 
-
