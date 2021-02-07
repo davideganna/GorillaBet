@@ -52,7 +52,6 @@ SquadraList:list[SquadraEnum] = [
     SquadraEnum.Udinese,
     SquadraEnum.Lazio,
     SquadraEnum.Atalanta,
-    SquadraEnum.ERRORE
 ]
 
 

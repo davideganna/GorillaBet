@@ -4,6 +4,7 @@ from Enumerators import *
 from Partita import Partita 
 from Squadra import Squadra
 from Helper import Helper
+from BettingStrategy import *
 
 #Fase 1 Aprire i file sorgente e ottenerne la struttura dati per ogni riga
 rows:list[Row] = FileHelper.GetRowsFromFiles()
@@ -29,6 +30,7 @@ for p in partite:
     squadraAway.PartiteGiocate.append(p)
 #######################
 
+printNome(squadre)
 
 ###################### Test - Jay ###################### Usa un file e una classe apposita, non sporchiamo qui!
 
@@ -69,8 +71,4 @@ for p in partite:
     #print(f"{squadra} Attack Strength:  {attack_strength:.5f}")
     #print(f"{squadra} Defence Weakness: {defence_weakness:.5f}")
 
-    GFc = 0 # GFc = Goals fatti in casa
-    GSc = 0 # GSc = Goals subiti in casa
-    GFt = 0 # GFt = Goals fatti in trasferta
-    GSt = 0 # GSt = Goals subiti in trasferta
 
