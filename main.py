@@ -22,6 +22,9 @@ for p in partite:
     squadraAway:Squadra = Helper.GetSquadraFromNome(squadre, p.SquadraAway)
     squadraHome.PartiteGiocate.append(p)
     squadraAway.PartiteGiocate.append(p)
-    print(len(squadraHome.PartiteGiocate))
+    #print(len(squadraHome.PartiteGiocate))
+#ReadableBettingStrategy.CalculateStats(squadre)
+
+########################### Test Jay ###########################
+"""Commentate la riga qui sotto se volete testare altro"""
 create_matrix()
-ReadableBettingStrategy.CalculateStats(squadre)
