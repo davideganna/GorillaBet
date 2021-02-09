@@ -51,10 +51,10 @@ def create_matrix():
     GTSc = M[:,3].sum() # Goal totali subiti in casa
     GTSt = M[:,4].sum() # Goal totali subiti in trasferta
 
-    x = PrettyTable(["Squadra", "GFc", "GFt", "GSc", "GSt"])
+    y = PrettyTable(["Squadra", "GFc", "GFt", "GSc", "GSt"])
     for row in M:
-        x.add_row(row)
-    print(x)
+        y.add_row(row)
+    print(y)
 
     matches = 20 # to fix
     S = np.ndarray((20,5), dtype = object) # Strength Matrix
@@ -85,9 +85,29 @@ def create_matrix():
         S[n,3] = defence_strength_H
         S[n,4] = defence_strength_A
 
-    x = PrettyTable(["Squadra", "AttSt_Home", "AttSt_Away", "DefSt_Home", "DefSt_Away"])
-    for row in S:
-        x.add_row(row)
-    print(x)
+    y.add_column("AttSt_Home", S[:,1])
+    y.add_column("AttSt_Away", S[:,2])
+    y.add_column("DefSt_Home", S[:,3])
+    y.add_column("DefSt_Away", S[:,4])
 
+    E = np.ndarray((20,3), dtype = object) # Expected Goals Matrix
+    for n, squadra in enumerate(SquadraList):
+        try:
+            exp_goals_H  = round(S[n,1]*S[13,4]*GTFc/(20*matches), 3) # S[13,4] -> DefStrength Roma when Away
+        except ZeroDivisionError:
+            exp_goals_H = None
 
+        try:
+            exp_goals_A  = round(S[n,2]*S[8,3]*GTFt/(20*matches), 3) # Contro la Roma
+        except ZeroDivisionError:
+            exp_goals_A = None
+        
+        E[n,0] = squadra
+        E[n,1] = exp_goals_H
+        E[n,2] = exp_goals_A
+
+    y.add_column("Exp_goals_vs_Roma", E[:,1])
+    y.add_column("Exp_goals_vs_Juve", E[:,2])
+    print(y)
+
+    
