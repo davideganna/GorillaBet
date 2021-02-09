@@ -54,7 +54,6 @@ def create_matrix():
     y = PrettyTable(["Squadra", "GFc", "GFt", "GSc", "GSt"])
     for row in M:
         y.add_row(row)
-    print(y)
 
     matches = 20 # to fix
     S = np.ndarray((20,5), dtype = object) # Strength Matrix
