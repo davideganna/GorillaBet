@@ -13,6 +13,10 @@ import math
 rows:list[Row] = FileHelper.GetRowsFromFiles()
 
 def poisson_pmf(mu, k):
+    """Returns the Poisson PMF f(k)\n
+    mu = Expected rate of goals\n
+    k  = Number of goals to evaluate\n
+    """
     pmf = math.exp(-mu)*(mu**k)/math.factorial(k)
     return pmf
 
@@ -120,11 +124,21 @@ def create_matrix():
 
 def calculate_odds(squadra_home, squadra_away):
     M = create_matrix()
-    print(M[0,10])
-    #exp_goals_H = Y[SquadraDict[squadra_home], 1]
-    #print(exp_goals_H)
+    exp_goals_H = M[SquadraDict[squadra_home], 9]
+    exp_goals_A = M[SquadraDict[squadra_away], 10]
+    GPh = np.zeros(5) # Goal probabilities at home
+    GPa = np.zeros(5) # Goal probabilities away
     for n in range(0, 5):
-        pass
+        GPh[n] = poisson_pmf(exp_goals_H, n)
+        GPa[n] = poisson_pmf(exp_goals_A, n)
+    
+    print(f"Expected goals {squadra_home} at home: {exp_goals_H}")
+    print(GPh)
+    print(f"Expected goals {squadra_away} away: {exp_goals_A}")
+    print(GPa)
+
+    
+    
 
         
 
