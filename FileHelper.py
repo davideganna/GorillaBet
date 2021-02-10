@@ -2,7 +2,8 @@ import csv
 from Row import Row
 import json
 
-_FILE_LIST_ = ["I1_2020_2021.csv"]
+# .csv results source: https://www.football-data.co.uk/italym.php
+_FILE_LIST_ = ["latest_results.csv"]
 """"Elenco dei file che saranno letti dall'helper"""
 _FILE_PATH = "SourceFiles\\"
 """Path della cartella dei file"""

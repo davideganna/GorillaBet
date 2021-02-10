@@ -27,8 +27,8 @@ for p in partite:
 
 ########################### Test Jay ###########################
 """Commentate le righe qui sotto se volete testare altro"""
-squadra_home = "Juventus"
-squadra_away = "Roma"
+squadra_home = "Napoli"
+squadra_away = "Inter"
 [GPh, GPa] = calc_poisson_goals(squadra_home, squadra_away)
 [OHW, OD, OAW] = calc_odds(GPh, GPa)
 print(f"{squadra_home} wins: {OHW:.4}")
