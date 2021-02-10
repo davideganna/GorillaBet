@@ -115,13 +115,20 @@ def create_stats_matrix(squadra_home, squadra_away):
         except ZeroDivisionError:
             exp_goals_A = None
         
-        E[n,0] = exp_goals_H
-        E[n,1] = exp_goals_A
+        if squadra == squadra_home:
+            E[SquadraDict[squadra_home],0] = exp_goals_H
+            E[SquadraDict[squadra_home],1] = ""
+        elif squadra == squadra_away:
+            E[SquadraDict[squadra_away],1] = exp_goals_A
+            E[SquadraDict[squadra_away],0] = ""
+        else:
+            E[n,0] = ""
+            E[n,1] = ""
     
     M = np.concatenate((M,E),axis=1)
 
-    y.add_column("Exp_goals_when_H", E[:,0])
-    y.add_column("Exp_goals_when_A", E[:,1])
+    y.add_column(f"Exp goals vs {squadra_away}", E[:,0])
+    y.add_column(f"Exp goals vs {squadra_home}", E[:,1])
     print(y)
     return M
 
