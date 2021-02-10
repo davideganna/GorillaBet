@@ -26,11 +26,11 @@ for p in partite:
 #ReadableBettingStrategy.CalculateStats(squadre)
 
 ########################### Test Jay ###########################
-"""Commentate la riga qui sotto se volete testare altro"""
+"""Commentate le righe qui sotto se volete testare altro"""
 squadra_home = "Juventus"
 squadra_away = "Roma"
 [GPh, GPa] = calc_poisson_goals(squadra_home, squadra_away)
 [OHW, OD, OAW] = calc_odds(GPh, GPa)
-print(f"Odds {squadra_home} wins: {OHW:.4}")
-print(f"Odds to draw: {OD:.4}")
-print(f"Odds {squadra_away} wins: {OAW:.4}")
+print(f"{squadra_home} wins: {OHW:.4}")
+print(f"Draw: {OD:.4}")
+print(f"{squadra_away} wins: {OAW:.4}")

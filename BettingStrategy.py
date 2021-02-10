@@ -20,73 +20,77 @@ def poisson_pmf(mu, k):
     pmf = math.exp(-mu)*(mu**k)/math.factorial(k)
     return pmf
 
-def create_matrix():
+def create_stats_matrix(squadra_home, squadra_away):
     """Returns a matrix M:\n
     M[0] = Squadra\n
-    M[1] = GFc\n
-    M[2] = GFt\n
-    M[3] = GSc\n
-    M[4] = GSt\n
-    M[5] = Attack Strength Home\n
-    M[6] = Attack Strength Away\n
-    M[7] = Defence Strength Home\n
-    M[8] = Defence Strength Away\n
-    M[9] = Expected Goals when Home\n
-    M[10] = Expected Goals when Away\n
+    M[1] = Giornate\n
+    M[2] = GFc\n
+    M[3] = GFt\n
+    M[4] = GSc\n
+    M[5] = GSt\n
+    M[6] = Attack Strength Home\n
+    M[7] = Attack Strength Away\n
+    M[8] = Defence Strength Home\n
+    M[9] = Defence Strength Away\n
+    M[10] = Expected Goals when Home\n
+    M[11] = Expected Goals when Away\n
     """
-    M = np.ndarray((20,5), dtype = object)
+    M = np.ndarray((20,6), dtype = object)
     for n, squadra in enumerate(SquadraList):
+        giornate = 0 # Partite giocate
         GFc = 0 # GFc = Goals fatti in casa
         GSc = 0 # GSc = Goals subiti in casa
         GFt = 0 # GFt = Goals fatti in trasferta
         GSt = 0 # GSt = Goals subiti in trasferta
         for r in rows:
-            if r.homeTeam == squadra:
+            if r.homeTeam == squadra and r.HTHG is not "":
                 GFc = GFc + int(r.FTHG)
                 GSc = GSc + int(r.FTAG)
-            elif r.awayTeam == squadra:
+                giornate = giornate + 1
+            elif r.awayTeam == squadra and r.HTHG is not "":
                 GFt = GFt + int(r.FTAG)
                 GSt = GSt + int(r.FTHG)
+                giornate = giornate + 1
 
         M[n, 0] = squadra
-        M[n, 1] = GFc
-        M[n, 2] = GFt
-        M[n, 3] = GSc
-        M[n, 4] = GSt
+        M[n, 1] = giornate
+        M[n, 2] = GFc
+        M[n, 3] = GFt
+        M[n, 4] = GSc
+        M[n, 5] = GSt
     
-    GTFc = M[:,1].sum() # Goal totali fatti in casa
-    GTFt = M[:,2].sum() # Goal totali fatti in trasferta
-    GTSc = M[:,3].sum() # Goal totali subiti in casa
-    GTSt = M[:,4].sum() # Goal totali subiti in trasferta
+    giornate_tot = M[:,1].sum()
+    GTFc = M[:,2].sum() # Goal totali fatti in casa
+    GTFt = M[:,3].sum() # Goal totali fatti in trasferta
+    GTSc = M[:,4].sum() # Goal totali subiti in casa
+    GTSt = M[:,5].sum() # Goal totali subiti in trasferta
 
-    y = PrettyTable(["Squadra", "GFc", "GFt", "GSc", "GSt"])
+    y = PrettyTable(["Squadra", "Giornate", "GFc", "GFt", "GSc", "GSt"])
     for row in M:
         y.add_row(row)
 
-    matches = 20 # to fix
     S = np.ndarray((20,4), dtype = object) # Strength Matrix
     for n, squadra in enumerate(SquadraList):
         try:
-            attack_strength_H  = round((M[n,1]/matches)/(GTFc/(20*matches)), 3)
+            attack_strength_H  = round((M[n,2]/M[n,1])/(GTFc/(20*M[n,1])), 3)
         except ZeroDivisionError:
             attack_strength_H = None
 
         try:
-            attack_strength_A  = round((M[n,2]/matches)/(GTFt/(20*matches)), 3)
+            attack_strength_A  = round((M[n,3]/M[n,1])/(GTFt/(20*M[n,1])), 3)
         except ZeroDivisionError:
             attack_strength_A = None
 
         try:
-            defence_strength_H = round((M[n,3]/matches)/(GTSc/(20*matches)), 3)
+            defence_strength_H = round((M[n,4]/M[n,1])/(GTSc/(20*M[n,1])), 3)
         except ZeroDivisionError:
             defence_strength_H = None
         
         try:
-            defence_strength_A = round((M[n,4]/matches)/(GTSt/(20*matches)), 3)
+            defence_strength_A = round((M[n,5]/M[n,1])/(GTSt/(20*M[n,1])), 3)
         except ZeroDivisionError:
             defence_strength_A = None
         
-        #S[n,0] = squadra
         S[n,0] = attack_strength_H
         S[n,1] = attack_strength_A
         S[n,2] = defence_strength_H
@@ -102,30 +106,29 @@ def create_matrix():
     E = np.ndarray((20,2), dtype = object) # Expected Goals Matrix
     for n, squadra in enumerate(SquadraList):
         try:
-            exp_goals_H  = round(S[n,1]*M[13,8]*GTFc/(20*matches), 3) # S[13,4] -> DefStrength Roma when Away
+            exp_goals_H  = round(M[SquadraDict[squadra_home],6]*M[SquadraDict[squadra_away],9]*GTFc/giornate_tot, 3) 
         except ZeroDivisionError:
             exp_goals_H = None
 
         try:
-            exp_goals_A  = round(S[n,2]*S[8,3]*GTFt/(20*matches), 3) # Contro la Roma
+            exp_goals_A  = round(M[SquadraDict[squadra_away],7]*M[SquadraDict[squadra_home],8]*GTFt/giornate_tot, 3)
         except ZeroDivisionError:
             exp_goals_A = None
         
-        #E[n,0] = squadra
         E[n,0] = exp_goals_H
         E[n,1] = exp_goals_A
     
     M = np.concatenate((M,E),axis=1)
 
-    y.add_column("Exp_goals_vs_Roma", E[:,0])
-    y.add_column("Exp_goals_vs_Juve", E[:,1])
+    y.add_column("Exp_goals_when_H", E[:,0])
+    y.add_column("Exp_goals_when_A", E[:,1])
     print(y)
     return M
 
 def calc_poisson_goals(squadra_home, squadra_away):
-    M = create_matrix()
-    exp_goals_H = M[SquadraDict[squadra_home], 9]
-    exp_goals_A = M[SquadraDict[squadra_away], 10]
+    M = create_stats_matrix(squadra_home, squadra_away)
+    exp_goals_H = M[SquadraDict[squadra_home], 10]
+    exp_goals_A = M[SquadraDict[squadra_away], 11]
     GPh = np.zeros(5) # Goal probabilities at home
     GPa = np.zeros(5) # Goal probabilities away
     for n in range(0, 5):
@@ -154,9 +157,3 @@ def calc_odds(GPh, GPa):
                 PAW = PAW + P[m,n]
     
     return [1/PHW, 1/PD, 1/PAW]
-    
-
-        
-
-
-    
