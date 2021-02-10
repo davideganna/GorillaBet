@@ -45,6 +45,29 @@ SquadraList:list[SquadraEnum] = [
     SquadraEnum.Verona
 ]
 
+SquadraDict = {
+    "Atalanta"  : 0,
+    "Benevento" : 1,
+    "Bologna"   : 2,
+    "Cagliari"  : 3,
+    "Crotone"   : 4,
+    "Fiorentina": 5,
+    "Genoa"     : 6,
+    "Inter"     : 7,
+    "Juventus"  : 8,
+    "Lazio"     : 9,
+    "Milan"     : 10,
+    "Napoli"    : 11,
+    "Parma"     : 12,
+    "Roma"      : 13,
+    "Sampdoria" : 14,
+    "Sassuolo"  : 15,
+    "Spezia"    : 16,
+    "Torino"    : 17,
+    "Udinese"   : 18,
+    "Verona"    : 19
+}
+
 class Esito:
     """Descrive chi vince"""
     Draw = 0

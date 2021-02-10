@@ -8,15 +8,6 @@ import numpy as np
 from prettytable import PrettyTable
 import math
 
-# A betting strategy to be discussed with the team
-
-# Attack strength  = goals totali / (goals totali + goals subiti)
-attack_strength  = 0
-# Defense strength = goals subiti / (goals totali + goals subiti)
-defense_strength = 0
-# Home factor = moltiplicatore per la squadra di casa (da sottrarre alla squadra away)
-home_factor = 1.05
-
 ###################### Test - Jay ###################### 
 
 rows:list[Row] = FileHelper.GetRowsFromFiles()
@@ -26,6 +17,19 @@ def poisson_pmf(mu, k):
     return pmf
 
 def create_matrix():
+    """Returns a matrix M:\n
+    M[0] = Squadra\n
+    M[1] = GFc\n
+    M[2] = GFt\n
+    M[3] = GSc\n
+    M[4] = GSt\n
+    M[5] = Attack Strength Home\n
+    M[6] = Attack Strength Away\n
+    M[7] = Defence Strength Home\n
+    M[8] = Defence Strength Away\n
+    M[9] = Expected Goals when Home\n
+    M[10] = Expected Goals when Away\n
+    """
     M = np.ndarray((20,5), dtype = object)
     for n, squadra in enumerate(SquadraList):
         GFc = 0 # GFc = Goals fatti in casa
@@ -56,7 +60,7 @@ def create_matrix():
         y.add_row(row)
 
     matches = 20 # to fix
-    S = np.ndarray((20,5), dtype = object) # Strength Matrix
+    S = np.ndarray((20,4), dtype = object) # Strength Matrix
     for n, squadra in enumerate(SquadraList):
         try:
             attack_strength_H  = round((M[n,1]/matches)/(GTFc/(20*matches)), 3)
@@ -78,21 +82,23 @@ def create_matrix():
         except ZeroDivisionError:
             defence_strength_A = None
         
-        S[n,0] = squadra
-        S[n,1] = attack_strength_H
-        S[n,2] = attack_strength_A
-        S[n,3] = defence_strength_H
-        S[n,4] = defence_strength_A
+        #S[n,0] = squadra
+        S[n,0] = attack_strength_H
+        S[n,1] = attack_strength_A
+        S[n,2] = defence_strength_H
+        S[n,3] = defence_strength_A
 
-    y.add_column("AttSt_Home", S[:,1])
-    y.add_column("AttSt_Away", S[:,2])
-    y.add_column("DefSt_Home", S[:,3])
-    y.add_column("DefSt_Away", S[:,4])
+    y.add_column("AttSt_Home", S[:,0])
+    y.add_column("AttSt_Away", S[:,1])
+    y.add_column("DefSt_Home", S[:,2])
+    y.add_column("DefSt_Away", S[:,3])
 
-    E = np.ndarray((20,3), dtype = object) # Expected Goals Matrix
+    M = np.concatenate((M,S),axis=1)
+
+    E = np.ndarray((20,2), dtype = object) # Expected Goals Matrix
     for n, squadra in enumerate(SquadraList):
         try:
-            exp_goals_H  = round(S[n,1]*S[13,4]*GTFc/(20*matches), 3) # S[13,4] -> DefStrength Roma when Away
+            exp_goals_H  = round(S[n,1]*M[13,8]*GTFc/(20*matches), 3) # S[13,4] -> DefStrength Roma when Away
         except ZeroDivisionError:
             exp_goals_H = None
 
@@ -101,12 +107,26 @@ def create_matrix():
         except ZeroDivisionError:
             exp_goals_A = None
         
-        E[n,0] = squadra
-        E[n,1] = exp_goals_H
-        E[n,2] = exp_goals_A
+        #E[n,0] = squadra
+        E[n,0] = exp_goals_H
+        E[n,1] = exp_goals_A
+    
+    M = np.concatenate((M,E),axis=1)
 
-    y.add_column("Exp_goals_vs_Roma", E[:,1])
-    y.add_column("Exp_goals_vs_Juve", E[:,2])
+    y.add_column("Exp_goals_vs_Roma", E[:,0])
+    y.add_column("Exp_goals_vs_Juve", E[:,1])
     print(y)
+    return M
+
+def calculate_odds(squadra_home, squadra_away):
+    M = create_matrix()
+    print(M[0,10])
+    #exp_goals_H = Y[SquadraDict[squadra_home], 1]
+    #print(exp_goals_H)
+    for n in range(0, 5):
+        pass
+
+        
+
 
     

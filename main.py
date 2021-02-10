@@ -27,4 +27,4 @@ for p in partite:
 
 ########################### Test Jay ###########################
 """Commentate la riga qui sotto se volete testare altro"""
-create_matrix()
+calculate_odds("Juventus", "Roma")
