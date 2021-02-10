@@ -122,7 +122,7 @@ def create_matrix():
     print(y)
     return M
 
-def calculate_odds(squadra_home, squadra_away):
+def calc_poisson_goals(squadra_home, squadra_away):
     M = create_matrix()
     exp_goals_H = M[SquadraDict[squadra_home], 9]
     exp_goals_A = M[SquadraDict[squadra_away], 10]
@@ -132,12 +132,28 @@ def calculate_odds(squadra_home, squadra_away):
         GPh[n] = poisson_pmf(exp_goals_H, n)
         GPa[n] = poisson_pmf(exp_goals_A, n)
     
-    print(f"Expected goals {squadra_home} at home: {exp_goals_H}")
-    print(GPh)
-    print(f"Expected goals {squadra_away} away: {exp_goals_A}")
-    print(GPa)
+    return [GPh, GPa]
 
+def calc_odds(GPh, GPa):
+    """Based on goal probability vectors, calculates the odds matrix O.\n
+    GPh = Goal probabilities at home\n
+    GPa = Goal probabilities away\n
+    Returns:\n
+    O = Odds matrix\n
+    """
+    [PHW, PD, PAW] = np.zeros(3) # Probability Home Wins / Draw / Away Wins
+    P = np.zeros((len(GPh),len(GPa)))
+    for m in range(0, len(GPh)):
+        for n in range(0, len(GPa)):
+            P[m,n] = GPh[m]*GPa[n]
+            if m > n:
+                PHW = PHW + P[m,n]
+            elif m == n:
+                PD = PD + P[m,n]
+            else:
+                PAW = PAW + P[m,n]
     
+    return [1/PHW, 1/PD, 1/PAW]
     
 
         
