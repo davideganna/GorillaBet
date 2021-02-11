@@ -1,3 +1,4 @@
+from ApiInterface import DashApi as API
 from FileHelper import FileHelper
 from Row import Row
 from Enumerators import *
@@ -6,6 +7,8 @@ from Squadra import Squadra
 from Helper import Helper
 from BettingStrategy import *
 from ReadableBettingStrategy import ReadableBettingStrategy
+
+API.GetAllSquadre()
 rows:list[Row] = FileHelper.GetRowsFromFiles()
 partite:list[Partita] = []
 r:Row
@@ -27,10 +30,10 @@ for p in partite:
 
 ########################### Test Jay ###########################
 """Commentate le righe qui sotto se volete testare altro"""
-squadra_home = "Napoli"
-squadra_away = "Inter"
-[GPh, GPa] = calc_poisson_goals(squadra_home, squadra_away)
-[OHW, OD, OAW] = calc_odds(GPh, GPa)
-print(f"{squadra_home} wins: {OHW:.4}")
-print(f"Draw: {OD:.4}")
-print(f"{squadra_away} wins: {OAW:.4}")
+#squadra_home = "Napoli"
+#squadra_away = "Inter"
+#[GPh, GPa] = calc_poisson_goals(squadra_home, squadra_away)
+#[OHW, OD, OAW] = calc_odds(GPh, GPa)
+#print(f"{squadra_home} wins: {OHW:.4}")
+#print(f"Draw: {OD:.4}")
+#print(f"{squadra_away} wins: {OAW:.4}")
