@@ -8,7 +8,7 @@ from Helper import Helper
 from BettingStrategy import *
 from ReadableBettingStrategy import ReadableBettingStrategy
 
-API.GetAllSquadre()
+API.GetFixtureAll()
 rows:list[Row] = FileHelper.GetRowsFromFiles()
 partite:list[Partita] = []
 r:Row
