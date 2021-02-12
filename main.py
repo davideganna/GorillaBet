@@ -42,5 +42,9 @@ elif tester == "Jay":
     print(f"{squadra_away} wins: {OAW:.4}")
 
 elif tester == "Varsa":
-    [fixture_ids, matches] = API.GetAllFixturesIds()
+    squadra_home = "Torino"
+    squadra_away = "Genoa"
+    game = squadra_home + squadra_away
+    print(API.Get_Odds_from_match(game))
+    
     

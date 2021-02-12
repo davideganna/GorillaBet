@@ -6,7 +6,8 @@ from Enumerators import *
 
 class DashApi:
     """Classe middleware per l'API"""
-    url: str = "v3.football.api-sports.io"
+
+    url = "v3.football.api-sports.io"
     headers = {
         'x-rapidapi-host': url,
         # 'x-rapidapi-key': "6fb51c5c8788961e2f02bc09b221b3ce"  # Chiave Mirko
@@ -28,7 +29,7 @@ class DashApi:
         return squadre
 
     @staticmethod
-    def GetAllFixturesIds():
+    def Create_Match_2_Dict():
         conn = http.client.HTTPSConnection(DashApi.url)
         conn.request(
             "GET", "/fixtures?next=10&league=135&season=2020", headers=DashApi.headers)
@@ -43,8 +44,14 @@ class DashApi:
         Match2FixtureId_Dict = dict.fromkeys(matches, 0)
         for n, match in enumerate(matches):
             Match2FixtureId_Dict[match] = fixture_ids[n]
-        print(Match2FixtureId_Dict)
-        return [fixture_ids, matches]
+        return Match2FixtureId_Dict
+    
+    @staticmethod
+    def Get_Odds_from_match(match):
+        Match2FixtureId_Dict = DashApi.Create_Match_2_Dict()
+        target_id = Match2FixtureId_Dict[match]
+        return target_id
+
 
 
     @staticmethod
