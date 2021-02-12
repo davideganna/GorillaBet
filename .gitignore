@@ -11,3 +11,12 @@ __pycache__/Enumerators.cpython-39.pyc
 .vscode/settings.json
 .vscode/settings.json
 Squadra.py
+__pycache__/ApiInterface.cpython-39.pyc
+__pycache__/BettingStrategy.cpython-39.pyc
+__pycache__/Enumerators.cpython-39.pyc
+__pycache__/FileHelper.cpython-39.pyc
+__pycache__/Helper.cpython-39.pyc
+__pycache__/Partita.cpython-39.pyc
+__pycache__/ReadableBettingStrategy.cpython-39.pyc
+__pycache__/Row.cpython-39.pyc
+__pycache__/Squadra.cpython-39.pyc

@@ -9,7 +9,7 @@ from BettingStrategy import *
 from ReadableBettingStrategy import ReadableBettingStrategy
 
 ############## Modify this to test different codes ##############
-tester = "Eim" # "Eim", "Jay", "Varsa"
+tester = "Varsa" # "Eim", "Jay", "Varsa"
 #################################################################
 if tester == "Eim":
     API.GetFixtureAll()
@@ -42,4 +42,6 @@ elif tester == "Jay":
     print(f"{squadra_away} wins: {OAW:.4}")
 
 elif tester == "Varsa":
-    pass
+    fixture_ids = API.GetAllFixturesIds()
+    print(fixture_ids)
+    

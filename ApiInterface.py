@@ -24,20 +24,20 @@ class DashApi:
         squadre: list = []
         for t in jsonResult["response"]:
             squadre.append(t["team"])
-            print(t["team"])
         return squadre
 
     @staticmethod
-    def GetFixtureAll() -> list:
+    def GetAllFixturesIds() -> list:
         conn = http.client.HTTPSConnection(DashApi.url)
         conn.request(
             "GET", "/fixtures?next=10&league=135&season=2020", headers=DashApi.headers)
         res = conn.getresponse()
         data = res.read()
         jsonResult = DashApi.GetJsonResponse(data)
-        squadre: list = []
-        print(jsonResult)
-        return squadre
+        fixture_ids: list = []
+        for result in jsonResult["response"]:
+           fixture_ids.append(result["fixture"]["id"])
+        return fixture_ids
 
     @staticmethod
     def GetJsonResponse(data):
