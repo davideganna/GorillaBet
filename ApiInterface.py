@@ -50,6 +50,15 @@ class DashApi:
     def Get_Odds_from_match(match):
         Match2FixtureId_Dict = DashApi.Create_Match_2_Dict()
         target_id = Match2FixtureId_Dict[match]
+        conn = http.client.HTTPSConnection(DashApi.url)
+        conn.request(
+            "GET", "/odds?league=135&season=2020&fixture=" + str(target_id), headers=DashApi.headers)
+        res = conn.getresponse()
+        data = res.read()
+        jsonResult = DashApi.GetJsonResponse(data)
+        for result in jsonResult["response"]:
+            print(result["bookmakers"][0]["bets"][0]["values"])
+            #print(result["response"][0]["bookmakers"][0]["bets"][0]["values"][0]["Away"])
         return target_id
 
 

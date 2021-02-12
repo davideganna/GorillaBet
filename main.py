@@ -42,9 +42,8 @@ elif tester == "Jay":
     print(f"{squadra_away} wins: {OAW:.4}")
 
 elif tester == "Varsa":
-    squadra_home = "Torino"
-    squadra_away = "Genoa"
+    squadra_home = "Bologna"
+    squadra_away = "Benevento"
     game = squadra_home + squadra_away
-    print(API.Get_Odds_from_match(game))
     
     
