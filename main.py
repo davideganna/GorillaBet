@@ -9,7 +9,7 @@ from BettingStrategy import *
 from ReadableBettingStrategy import ReadableBettingStrategy
 
 ############## Modify this to test different codes ##############
-tester = "Varsa" # "Eim", "Jay", "Varsa"
+tester = "Jay" # "Eim", "Jay", "Varsa"
 #################################################################
 if tester == "Eim":
     API.GetFixtureAll()
@@ -34,16 +34,22 @@ if tester == "Eim":
 
 elif tester == "Jay":
     squadra_home = "Napoli"
-    squadra_away = "Inter"
+    squadra_away = "Juventus"
+    game = squadra_home + squadra_away
     [GPh, GPa] = calc_poisson_goals(squadra_home, squadra_away)
     [OHW, OD, OAW] = calc_odds(GPh, GPa)
-    print(f"{squadra_home} wins: {OHW:.4}")
-    print(f"Draw: {OD:.4}")
-    print(f"{squadra_away} wins: {OAW:.4}")
+    print(f"[Bot] {squadra_home} wins: {OHW:.4}")
+    print(f"[Bot] Draw: {OD:.4}")
+    print(f"[Bot] {squadra_away} wins: {OAW:.4}")
+    [home, draw, away] = API.Get_Odds_from_match(game)
+    print(f"[BWIN] {squadra_home} wins: {home}")
+    print(f"[BWIN] Draw: {draw}")
+    print(f"[BWIN] {squadra_away} wins: {away}")
 
 elif tester == "Varsa":
-    squadra_home = "Bologna"
-    squadra_away = "Benevento"
+    squadra_home = "Napoli"
+    squadra_away = "Juventus"
     game = squadra_home + squadra_away
+    [home, draw, away] = API.Get_Odds_from_match(game)
     
     
