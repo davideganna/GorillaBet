@@ -1,6 +1,7 @@
 import http.client
 import urllib.parse
 import json
+from Enumerators import *
 
 
 class DashApi:
@@ -39,7 +40,12 @@ class DashApi:
         for result in jsonResult["response"]:
            fixture_ids.append(result["fixture"]["id"])
            matches.append(result["teams"]["home"]["name"] + result["teams"]["away"]["name"])
+        Match2FixtureId_Dict = dict.fromkeys(matches, 0)
+        for n, match in enumerate(matches):
+            Match2FixtureId_Dict[match] = fixture_ids[n]
+        print(Match2FixtureId_Dict)
         return [fixture_ids, matches]
+
 
     @staticmethod
     def GetJsonResponse(data):

@@ -43,6 +43,4 @@ elif tester == "Jay":
 
 elif tester == "Varsa":
     [fixture_ids, matches] = API.GetAllFixturesIds()
-    print(fixture_ids)
-    print(matches)
     

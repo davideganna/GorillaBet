@@ -68,6 +68,10 @@ SquadraDict = {
     "Verona"    : 19
 }
 
+Match2FixtureId_Dict = {
+    
+}
+
 class Esito:
     """Descrive chi vince"""
     Draw = 0
