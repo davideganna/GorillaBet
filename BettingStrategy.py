@@ -43,11 +43,11 @@ def create_stats_matrix(squadra_home, squadra_away):
         GFt = 0 # GFt = Goals fatti in trasferta
         GSt = 0 # GSt = Goals subiti in trasferta
         for r in rows:
-            if r.homeTeam == squadra and r.HTHG is not "":
+            if r.homeTeam == squadra and r.HTHG != "":
                 GFc = GFc + int(r.FTHG)
                 GSc = GSc + int(r.FTAG)
                 giornate = giornate + 1
-            elif r.awayTeam == squadra and r.HTHG is not "":
+            elif r.awayTeam == squadra and r.HTHG != "":
                 GFt = GFt + int(r.FTAG)
                 GSt = GSt + int(r.FTHG)
                 giornate = giornate + 1

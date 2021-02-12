@@ -5,11 +5,11 @@ class DashApi:
     """Classe middleware per l'API"""
     url:str = "v3.football.api-sports.io"
     headers = {
-            'x-rapidapi-host': url,
-            'x-rapidapi-key': "6fb51c5c8788961e2f02bc09b221b3ce" #Chiave Mirko
-            #'x-rapidapi-key': "6fb51c5c8788961e2f02bc09b221b3ce" #Chiave Davide
-            #'x-rapidapi-key': "6fb51c5c8788961e2f02bc09b221b3ce" #Chiave Varsa
-            }
+        'x-rapidapi-host': url,
+        'x-rapidapi-key': "6fb51c5c8788961e2f02bc09b221b3ce" #Chiave Mirko
+        #'x-rapidapi-key': "6fb51c5c8788961e2f02bc09b221b3ce" #Chiave Davide
+        #'x-rapidapi-key': "6fb51c5c8788961e2f02bc09b221b3ce" #Chiave Varsa
+    }
     @staticmethod
     def GetAllSquadre() -> list:    
         conn = http.client.HTTPSConnection("v3.football.api-sports.io")
