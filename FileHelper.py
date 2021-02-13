@@ -14,13 +14,13 @@ class FileHelper(object):
 
     @staticmethod
     def GetFilePath(fileName):
-         return os.path.join(FileHelper._FILE_PATH, fileName)
+         return os.path.join(_FILE_PATH, fileName)
 
     @staticmethod
     def GetRowsFromFiles():
         result = []
         for file in _FILE_LIST_:
-            fullPath = GetFilePath(file)
+            fullPath = FileHelper.GetFilePath(file)
             #inserire un controllo se il file esiste o meno
             with open(fullPath) as sourceFile:
                 sourceFile = csv.reader(sourceFile, delimiter=',')
