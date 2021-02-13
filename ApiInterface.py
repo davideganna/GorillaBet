@@ -1,9 +1,8 @@
 import http.client
 import urllib.parse
-import json
+import json, asyncio
 from Enumerators import *
-
-
+from CacheHelper import CacheHelper as cache
 class DashApi:
     """Classe middleware per l'API"""
 
@@ -18,14 +17,16 @@ class DashApi:
     @staticmethod
     def GetAllSquadre():
         conn = http.client.HTTPSConnection("v3.football.api-sports.io")
-        conn.request("GET", "/teams?league=135&season=2020", headers=DashApi.headers)
-        res = conn.getresponse()
-        data = res.read()
-        jsonResult = DashApi.GetJsonResponse(data)
-        squadre: list = []
-        for t in jsonResult["response"]:
-            squadre.append(t["team"])
-        return squadre
+        fileName : str = "AllSquadre"
+        if cache.IsFileUpdated(fileName):
+            return cache.GetFromFile(fileName)
+        else:
+            conn.request("GET", "/teams?league=135&season=2020", headers=DashApi.headers)
+            res = conn.getresponse()
+            data = res.read()
+            jsonResult = DashApi.GetJsonResponse(data)
+            asyncio.run(cache.UpdateFile(fileName, json.dumps(jsonResult["response"])))
+            return jsonResult["response"]
 
     @staticmethod
     def Create_Match_2_Dict():
