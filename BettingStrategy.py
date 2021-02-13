@@ -43,16 +43,16 @@ def create_stats_matrix(squadra_home, squadra_away):
         GFt = 0 # GFt = Goals fatti in trasferta
         GSt = 0 # GSt = Goals subiti in trasferta
         for r in rows:
-            if r.homeTeam == squadra and r.HTHG != "":
+            if r.homeTeam.lower() == squadra and r.HTHG != "":
                 GFc = GFc + int(r.FTHG)
                 GSc = GSc + int(r.FTAG)
                 giornate = giornate + 1
-            elif r.awayTeam == squadra and r.HTHG != "":
+            elif r.awayTeam.lower() == squadra and r.HTHG != "":
                 GFt = GFt + int(r.FTAG)
                 GSt = GSt + int(r.FTHG)
                 giornate = giornate + 1
 
-        M[n, 0] = squadra
+        M[n, 0] = squadra.lower()
         M[n, 1] = giornate
         M[n, 2] = GFc
         M[n, 3] = GFt
@@ -129,7 +129,7 @@ def create_stats_matrix(squadra_home, squadra_away):
 
     y.add_column(f"Exp goals vs {squadra_away}", E[:,0])
     y.add_column(f"Exp goals vs {squadra_home}", E[:,1])
-    print(y)
+    #print(y) # <------ FOR DEBUGGING PURPOSES
     return M
 
 def calc_poisson_goals(squadra_home, squadra_away):

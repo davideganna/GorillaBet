@@ -40,7 +40,7 @@ class DashApi:
         matches: list = []
         for result in jsonResult["response"]:
            fixture_ids.append(result["fixture"]["id"])
-           matches.append(result["teams"]["home"]["name"] + result["teams"]["away"]["name"])
+           matches.append(result["teams"]["home"]["name"].lower() + result["teams"]["away"]["name"].lower())
         Match2FixtureId_Dict = dict.fromkeys(matches, 0)
         for n, match in enumerate(matches):
             Match2FixtureId_Dict[match] = fixture_ids[n]
@@ -50,7 +50,6 @@ class DashApi:
     def Get_Odds_from_match(match):
         Match2FixtureId_Dict = DashApi.Create_Match_2_Dict()
         target_id = Match2FixtureId_Dict[match]
-        print(target_id)
         conn = http.client.HTTPSConnection(DashApi.url)
         conn.request(
             "GET", "/odds?league=135&season=2020&fixture=" + str(target_id), headers=DashApi.headers)

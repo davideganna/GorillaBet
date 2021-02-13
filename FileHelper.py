@@ -5,7 +5,7 @@ import json, os.path
 # .csv results source: https://www.football-data.co.uk/italym.php
 _FILE_LIST_ = ["latest_results.csv"]
 """"Elenco dei file che saranno letti dall'helper"""
-_FILE_PATH = "SourceFiles"
+_FILE_PATH_ = "SourceFiles\\"
 """Path della cartella dei file"""
 
 
@@ -14,7 +14,10 @@ class FileHelper(object):
 
     @staticmethod
     def GetFilePath(fileName):
-         return os.path.join(_FILE_PATH, fileName)
+        path = os.path.realpath(fileName)
+        print(path)
+        #return os.path.join(_FILE_PATH, fileName)
+        return path
 
     @staticmethod
     def GetRowsFromFiles():

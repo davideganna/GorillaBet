@@ -17,6 +17,8 @@ if tester == "Eim":
 elif tester == "Jay":
     squadra_home = "Napoli"
     squadra_away = "Juventus"
+    squadra_home = squadra_home.lower()
+    squadra_away = squadra_away.lower()
     game = squadra_home + squadra_away
     [GPh, GPa] = calc_poisson_goals(squadra_home, squadra_away)
     [OHW, OD, OAW] = calc_odds(GPh, GPa)

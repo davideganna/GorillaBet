@@ -1,25 +1,25 @@
 class SquadraEnum:
     """Enumeratore per il nome delle squadre"""
-    Atalanta = "Atalanta"
-    Benevento = "Benevento"
-    Bologna = "Bologna"
-    Cagliari = "Cagliari"
-    Crotone = "Crotone"
-    Fiorentina = "Fiorentina"
-    Genoa = "Genoa"
-    Inter = "Inter"
-    Juventus = "Juventus"
-    Lazio = "Lazio"
-    Milan = "Milan"
-    Napoli = "Napoli"
-    Parma = "Parma"
-    Roma = "Roma"
-    Sampdoria = "Sampdoria"
-    Sassuolo = "Sassuolo"
-    Spezia = "Spezia"
-    Torino = "Torino"
-    Udinese = "Udinese"
-    Verona = "Verona"
+    Atalanta = "atalanta"
+    Benevento = "benevento"
+    Bologna = "bologna"
+    Cagliari = "cagliari"
+    Crotone = "crotone"
+    Fiorentina = "fiorentina"
+    Genoa = "genoa"
+    Inter = "inter"
+    Juventus = "juventus"
+    Lazio = "lazio"
+    Milan = "milan"
+    Napoli = "napoli"
+    Parma = "parma"
+    Roma = "roma"
+    Sampdoria = "sampdoria"
+    Sassuolo = "sassuolo"
+    Spezia = "spezia"
+    Torino = "torino"
+    Udinese = "udinese"
+    Verona = "verona"
 
 # Penso sia meglio fare una lista perche dobbiamo iterare. RM: Si, ma usa gli enumeratori
 SquadraList = [
@@ -46,26 +46,26 @@ SquadraList = [
 ]
 
 SquadraDict = {
-    "Atalanta"  : 0,
-    "Benevento" : 1,
-    "Bologna"   : 2,
-    "Cagliari"  : 3,
-    "Crotone"   : 4,
-    "Fiorentina": 5,
-    "Genoa"     : 6,
-    "Inter"     : 7,
-    "Juventus"  : 8,
-    "Lazio"     : 9,
-    "Milan"     : 10,
-    "Napoli"    : 11,
-    "Parma"     : 12,
-    "Roma"      : 13,
-    "Sampdoria" : 14,
-    "Sassuolo"  : 15,
-    "Spezia"    : 16,
-    "Torino"    : 17,
-    "Udinese"   : 18,
-    "Verona"    : 19
+    "atalanta"  : 0,
+    "benevento" : 1,
+    "bologna"   : 2,
+    "cagliari"  : 3,
+    "crotone"   : 4,
+    "fiorentina": 5,
+    "genoa"     : 6,
+    "inter"     : 7,
+    "juventus"  : 8,
+    "lazio"     : 9,
+    "milan"     : 10,
+    "napoli"    : 11,
+    "parma"     : 12,
+    "roma"      : 13,
+    "sampdoria" : 14,
+    "sassuolo"  : 15,
+    "spezia"    : 16,
+    "torino"    : 17,
+    "udinese"   : 18,
+    "verona"    : 19
 }
 
 Match2FixtureId_Dict = {
