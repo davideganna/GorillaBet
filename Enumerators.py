@@ -22,7 +22,7 @@ class SquadraEnum:
     Verona = "Verona"
 
 # Penso sia meglio fare una lista perche dobbiamo iterare. RM: Si, ma usa gli enumeratori
-SquadraList:list[SquadraEnum] = [
+SquadraList = [
     SquadraEnum.Atalanta,
     SquadraEnum.Benevento,
     SquadraEnum.Bologna,
