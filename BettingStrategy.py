@@ -10,7 +10,7 @@ import math
 
 ###################### Test - Jay ###################### 
 
-rows:list[Row] = FileHelper.GetRowsFromFiles()
+rows = FileHelper.GetRowsFromFiles()
 
 def poisson_pmf(mu, k):
     """Returns the Poisson PMF f(k)\n

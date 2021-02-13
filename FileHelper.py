@@ -13,7 +13,7 @@ _FILE_PATH = "SourceFiles\\"
 class FileHelper(object):
     @staticmethod
     def GetRowsFromFiles():
-        result:list[Row]  = []
+        result = []
         for file in _FILE_LIST_:
             fullPath = _FILE_PATH + file
             #inserire un controllo se il file esiste o meno

@@ -4,7 +4,7 @@ from Partita import Partita
 
 class ReadableBettingStrategy:
     @staticmethod
-    def CalculateStats(squadre:list[Squadra]):
+    def CalculateStats(squadre):
         sq: Squadra
         p: Partita
         GoalFattiCasa: int
