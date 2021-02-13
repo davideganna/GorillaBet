@@ -68,3 +68,12 @@ class FileHelper(object):
         newElement.HR = r[21]
         newElement.AR = r[22]  
         return newElement
+
+    @staticmethod
+    def compare_odds(program_odds, bwin_odds):
+        positive_odds = []
+        for i in range(len(program_odds)):
+            positive_odds.append(bwin_odds[i] - program_odds[i])
+            if positive_odds[i] < 0:
+                positive_odds[i] = 0
+        return positive_odds
