@@ -9,8 +9,8 @@ class DashApi:
     url = "v3.football.api-sports.io"
     headers = {
         'x-rapidapi-host': url,
-        #'x-rapidapi-key': "6fb51c5c8788961e2f02bc09b221b3ce" # Chiave Mirko
-         'x-rapidapi-key': "648939b99aca43ba86c7c75455b9fc61" # Chiave Davide
+        'x-rapidapi-key': "6fb51c5c8788961e2f02bc09b221b3ce" # Chiave Mirko
+        #'x-rapidapi-key': "648939b99aca43ba86c7c75455b9fc61" # Chiave Davide
         # 'x-rapidapi-key': "e5c09ffce045356e24a0c225e2352a4d" # Chiave Varsa
     }
 

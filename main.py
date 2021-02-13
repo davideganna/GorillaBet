@@ -10,13 +10,13 @@ from ReadableBettingStrategy import ReadableBettingStrategy
 from CacheHelper import CacheHelper as cache
 
 ############## Modify this to test different codes ##############
-tester = "Varsa" # "Eim", "Jay", "Varsa"
+tester = "Jay" # "Eim", "Jay", "Varsa"
 #################################################################
 if tester == "Eim":
     API.GetAllSquadre()
 elif tester == "Jay":
-    squadra_home = "Napoli"
-    squadra_away = "Juventus"
+    squadra_home = "Inter"
+    squadra_away = "Lazio"
     squadra_home = squadra_home.lower()
     squadra_away = squadra_away.lower()
     game = squadra_home + squadra_away

@@ -15,7 +15,6 @@ class FileHelper(object):
     @staticmethod
     def GetFilePath(fileName):
         path = os.path.realpath(fileName)
-        print(path)
         #return os.path.join(_FILE_PATH, fileName)
         return path
 
