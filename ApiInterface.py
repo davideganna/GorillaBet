@@ -16,7 +16,7 @@ class DashApi:
     }
 
     @staticmethod
-    def GetAllSquadre() -> list:
+    def GetAllSquadre():
         conn = http.client.HTTPSConnection("v3.football.api-sports.io")
         conn.request("GET", "/teams?league=135&season=2020", headers=DashApi.headers)
         res = conn.getresponse()

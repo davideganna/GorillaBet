@@ -12,7 +12,7 @@ _FILE_PATH = "SourceFiles\\"
 
 class FileHelper(object):
     @staticmethod
-    def GetRowsFromFiles() -> list[Row]:
+    def GetRowsFromFiles():
         result:list[Row]  = []
         for file in _FILE_LIST_:
             fullPath = _FILE_PATH + file
@@ -32,7 +32,7 @@ class FileHelper(object):
         return result
 
     @staticmethod
-    def Mapping(firstRow, r) -> Row:
+    def Mapping(firstRow, r):
         newElement = Row()
         #da rivedere nel caso i merdoni del file cambiano la struttura del file nella remota possibilità
         #per Davide: si, sono un merdone

@@ -64,7 +64,7 @@ class Row:
         ABP:str
         """Numero di cartellini totali della squadra ospite, 10 = giallo, 25 = rosso"""
 
-    def GetPartita(self) -> Partita :
+    def GetPartita(self):
         partita:Partita = Partita()
         partita.Lega = self.div
         partita.DataPartita = Row.GetDataPartita(self.date, self.time)
@@ -79,13 +79,13 @@ class Row:
         return partita
 
     @staticmethod
-    def GetDataPartita(data, orario) -> datetime:
+    def GetDataPartita(data, orario):
         dataParsed = data.split('/')
         timeSplit = orario.split(':')
         return datetime(int(dataParsed[2]), int(dataParsed[1]), int(dataParsed[0]), int(timeSplit[0]), int(timeSplit[1]))
 
     @staticmethod
-    def GetSquadraFromString(squad) -> SquadraEnum:
+    def GetSquadraFromString(squad):
         if not squad:
             return SquadraEnum.ERRORE
         elif squad.lower() == "juventus":
@@ -134,7 +134,7 @@ class Row:
             return SquadraEnum.ERRORE
 
     @staticmethod
-    def GetEsito(text) -> int:
+    def GetEsito(text):
         if not text:
             return Esito.Draw
         elif text == "H":
@@ -145,7 +145,7 @@ class Row:
             return Esito.Draw
     
     @staticmethod
-    def GetGoals(text) -> int:
+    def GetGoals(text):
         if not text:
             return None
         return int(text)

@@ -6,7 +6,7 @@ class Helper(object):
     """Classe helper con una serie di funzioni utili"""
 
     @staticmethod
-    def GetSquadraFromNome(squadre:list[Squadra], squadraCercata:str) -> Squadra:
+    def GetSquadraFromNome(squadre:list[Squadra], squadraCercata:str):
         s: Squadra
         for s in squadre:
             if s.Nome == squadraCercata:
