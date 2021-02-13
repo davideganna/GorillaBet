@@ -15,18 +15,32 @@ class DashApi:
     }
 
     @staticmethod
-    def GetAllSquadre():
-        conn = http.client.HTTPSConnection("v3.football.api-sports.io")
-        fileName : str = "AllSquadre"
+    def GetJsonResponse(data):
+        return json.loads(data.decode("utf-8"))
+
+    @staticmethod
+    def MakeCall(endpoint):
+        conn = http.client.HTTPSConnection(DashApi.url)
+        conn.request("GET", endpoint, headers=DashApi.headers)
+        res = conn.getresponse()
+        data = res.read()
+        return DashApi.GetJsonResponse(data)
+
+    @staticmethod
+    def GetResult(endpoint, fileName):
         if cache.IsFileUpdated(fileName):
             return cache.GetFromFile(fileName)
         else:
-            conn.request("GET", "/teams?league=135&season=2020", headers=DashApi.headers)
-            res = conn.getresponse()
-            data = res.read()
-            jsonResult = DashApi.GetJsonResponse(data)
-            cache.UpdateFile(fileName, json.dumps(jsonResult["response"]))
-            return jsonResult["response"]
+            jsonResult = MakeCall(endpoint)
+            response = jsonResult["response"]
+            cache.UpdateFile(fileName, json.dumps(response))
+            return response
+
+    @staticmethod
+    def GetAllSquadre():
+        fileName : str = "AllSquadre"
+        endpoint : str = "/teams?league=135&season=2020"
+        return GetResult(endpoint, fileName)
 
     @staticmethod
     def Create_Match_2_Dict():
@@ -64,7 +78,3 @@ class DashApi:
             elif result["value"] == "Away":
                 away_wins_odds = result["odd"]
         return [home_wins_odds, draw_odds, away_wins_odds]
-
-    @staticmethod
-    def GetJsonResponse(data):
-        return json.loads(data.decode("utf-8"))
