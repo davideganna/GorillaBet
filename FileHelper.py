@@ -1,6 +1,6 @@
 import csv
 from Row import Row
-import json
+import json, os.path
 
 # .csv results source: https://www.football-data.co.uk/italym.php
 _FILE_LIST_ = ["latest_results.csv"]
@@ -11,11 +11,16 @@ _FILE_PATH = "SourceFiles\\"
 
 
 class FileHelper(object):
+
+    @staticmethod
+    def GetFilePath(fileName):
+         return os.path.join(FileHelper._FILE_PATH, fileName)
+
     @staticmethod
     def GetRowsFromFiles():
         result = []
         for file in _FILE_LIST_:
-            fullPath = _FILE_PATH + file
+            fullPath = GetFilePath(file)
             #inserire un controllo se il file esiste o meno
             with open(fullPath) as sourceFile:
                 sourceFile = csv.reader(sourceFile, delimiter=',')
