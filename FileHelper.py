@@ -5,7 +5,7 @@ import json, os.path
 # .csv results source: https://www.football-data.co.uk/italym.php
 _FILE_LIST_ = ["latest_results.csv"]
 """"Elenco dei file che saranno letti dall'helper"""
-_FILE_PATH = "SourceFiles\\"
+_FILE_PATH = "SourceFiles"
 """Path della cartella dei file"""
 
 
@@ -65,3 +65,12 @@ class FileHelper(object):
         newElement.HR = r[21]
         newElement.AR = r[22]  
         return newElement
+
+    @staticmethod
+    def compare_odds(program_odds, bwin_odds):
+        positive_odds = []
+        for i in range(len(program_odds)):
+            positive_odds.append(bwin_odds[i] - program_odds[i])
+            if positive_odds[i] < 0:
+                positive_odds[i] = 0
+        return positive_odds

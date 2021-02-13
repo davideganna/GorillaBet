@@ -10,7 +10,7 @@ from ReadableBettingStrategy import ReadableBettingStrategy
 from CacheHelper import CacheHelper as cache
 
 ############## Modify this to test different codes ##############
-tester = "Eim" # "Eim", "Jay", "Varsa"
+tester = "Varsa" # "Eim", "Jay", "Varsa"
 #################################################################
 if tester == "Eim":
     API.GetAllSquadre()
@@ -29,9 +29,9 @@ elif tester == "Jay":
     print(f"[BWIN] {squadra_away} wins: {away}")
 
 elif tester == "Varsa":
-    squadra_home = "Napoli"
-    squadra_away = "Juventus"
-    game = squadra_home + squadra_away
-    [home, draw, away] = API.Get_Odds_from_match(game)
+    v_1 = [1, 1.5, 2]
+    v_2 =[1.5, 2, 1]
+    positive_odds = FileHelper.compare_odds(v_1, v_2)
+    print(positive_odds)
     
     
