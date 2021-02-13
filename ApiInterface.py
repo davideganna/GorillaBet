@@ -25,7 +25,7 @@ class DashApi:
             res = conn.getresponse()
             data = res.read()
             jsonResult = DashApi.GetJsonResponse(data)
-            asyncio.run(cache.UpdateFile(fileName, json.dumps(jsonResult["response"])))
+            cache.UpdateFile(fileName, json.dumps(jsonResult["response"]))
             return jsonResult["response"]
 
     @staticmethod

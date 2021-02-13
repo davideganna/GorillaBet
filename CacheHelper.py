@@ -5,7 +5,7 @@ class CacheHelper:
     filePath:str = "CacheFiles\\"
     fileExtension:str = ".json"
     @staticmethod
-    async def UpdateFile(fileName, jsonValue):
+    def UpdateFile(fileName, jsonValue):
         fullPath : str = CacheHelper.filePath + fileName + CacheHelper.fileExtension
         filePointer = open(fullPath, "w")
         filePointer.write(jsonValue)
