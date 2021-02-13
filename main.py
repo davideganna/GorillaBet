@@ -10,7 +10,7 @@ from ReadableBettingStrategy import ReadableBettingStrategy
 from CacheHelper import CacheHelper as cache
 
 ############## Modify this to test different codes ##############
-tester = "Eim" # "Eim", "Jay", "Varsa"
+tester = "Jay" # "Eim", "Jay", "Varsa"
 #################################################################
 if tester == "Eim":
     API.GetAllSquadre()
