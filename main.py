@@ -10,7 +10,7 @@ from ReadableBettingStrategy import ReadableBettingStrategy
 from CacheHelper import CacheHelper as cache
 import json
 ############## Modify this to test different codes ##############
-tester = "Eim" # "Eim", "Jay", "Varsa"
+tester = "Varsa" # "Eim", "Jay", "Varsa"
 #################################################################
 if tester == "Eim":
     cache.GetFromFile("test.json")
