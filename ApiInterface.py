@@ -9,9 +9,7 @@ class DashApi:
     url = "v3.football.api-sports.io"
     headers = {
         'x-rapidapi-host': url,
-        'x-rapidapi-key': "6fb51c5c8788961e2f02bc09b221b3ce" # Chiave Mirko
-        #'x-rapidapi-key': "648939b99aca43ba86c7c75455b9fc61" # Chiave Davide
-        # 'x-rapidapi-key': "e5c09ffce045356e24a0c225e2352a4d" # Chiave Varsa
+        'x-rapidapi-key': "" # It's replaced depending on the tester
     }
 
     @staticmethod
@@ -65,8 +63,7 @@ class DashApi:
         Match2FixtureId_Dict = DashApi.Create_Match_2_Dict()
         target_id = Match2FixtureId_Dict[match]
         conn = http.client.HTTPSConnection(DashApi.url)
-        conn.request(
-            "GET", "/odds?league=135&season=2020&fixture=" + str(target_id), headers=DashApi.headers)
+        conn.request("GET", "/odds?league=135&season=2020&fixture=" + str(target_id), headers=DashApi.headers)
         res = conn.getresponse()
         data = res.read()
         jsonResult = DashApi.GetJsonResponse(data)

@@ -14,7 +14,18 @@ tester = "Jay" # "Eim", "Jay", "Varsa"
 #################################################################
 if tester == "Eim":
     API.GetAllSquadre()
+    eim_headers = {
+        'x-rapidapi-host': "v3.football.api-sports.io",
+        'x-rapidapi-key': "" # Chiave Eim
+    }
+    API.headers = eim_headers
+
 elif tester == "Jay":
+    jay_headers = {
+        'x-rapidapi-host': "v3.football.api-sports.io",
+        'x-rapidapi-key': "648939b99aca43ba86c7c75455b9fc61" # Chiave Jay
+    }
+    API.headers = jay_headers
     squadra_home = "Inter"
     squadra_away = "Lazio"
     squadra_home = squadra_home.lower()
@@ -31,6 +42,11 @@ elif tester == "Jay":
     print(f"[BWIN] {squadra_away} wins: {away}")
 
 elif tester == "Varsa":
+    varsa_headers = {
+        'x-rapidapi-host': "v3.football.api-sports.io",
+        'x-rapidapi-key': "" # Chiave Varsa
+    }
+    API.headers = varsa_headers
     v_1 = [1, 1.5, 2]
     v_2 =[1.5, 2, 1]
     positive_odds = FileHelper.compare_odds(v_1, v_2)
