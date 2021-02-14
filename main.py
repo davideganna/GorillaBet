@@ -13,7 +13,6 @@ import json
 tester = "Varsa" # "Eim", "Jay", "Varsa"
 #################################################################
 if tester == "Eim":
-    cache.GetFromFile("test.json")
     print(json.dumps(cache.GetFromFile("test.json")))
 elif tester == "Jay":
     jay_headers = {
