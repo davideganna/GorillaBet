@@ -10,7 +10,7 @@ from ReadableBettingStrategy import ReadableBettingStrategy
 from CacheHelper import CacheHelper as cache
 
 ############## Modify this to test different codes ##############
-tester = "Jay" # "Eim", "Jay", "Varsa"
+tester = "Varsa" # "Eim", "Jay", "Varsa"
 #################################################################
 if tester == "Eim":
     API.GetAllSquadre()
@@ -44,12 +44,9 @@ elif tester == "Jay":
 elif tester == "Varsa":
     varsa_headers = {
         'x-rapidapi-host': "v3.football.api-sports.io",
-        'x-rapidapi-key': "" # Chiave Varsa
+        'x-rapidapi-key': "fbcab0dc26060c039332cb3bd8f2d62a"
     }
     API.headers = varsa_headers
-    v_1 = [1, 1.5, 2]
-    v_2 =[1.5, 2, 1]
-    positive_odds = FileHelper.compare_odds(v_1, v_2)
-    print(positive_odds)
+    print(API.Get_Odds_from_match("veronalazio"))
     
     

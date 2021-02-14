@@ -61,17 +61,21 @@ class DashApi:
     @staticmethod
     def Get_Odds_from_match(match):
         Match2FixtureId_Dict = DashApi.Create_Match_2_Dict()
-        target_id = Match2FixtureId_Dict[match]
-        conn = http.client.HTTPSConnection(DashApi.url)
-        conn.request("GET", "/odds?league=135&season=2020&fixture=" + str(target_id), headers=DashApi.headers)
-        res = conn.getresponse()
-        data = res.read()
-        jsonResult = DashApi.GetJsonResponse(data)
-        for n, result in enumerate(jsonResult["response"][0]["bookmakers"][0]["bets"][0]["values"]):
-            if result["value"] == "Home":
-                home_wins_odds = result["odd"]
-            elif result["value"] == "Draw":
-                draw_odds = result["odd"]
-            elif result["value"] == "Away":
-                away_wins_odds = result["odd"]
-        return [home_wins_odds, draw_odds, away_wins_odds]
+        if match in Match2FixtureId_Dict:
+            target_id = Match2FixtureId_Dict[match]
+            conn = http.client.HTTPSConnection(DashApi.url)
+            conn.request("GET", "/odds?league=135&season=2020&fixture=" + str(target_id), headers=DashApi.headers)
+            res = conn.getresponse()
+            data = res.read()
+            jsonResult = DashApi.GetJsonResponse(data)
+            for n, result in enumerate(jsonResult["response"][0]["bookmakers"][0]["bets"][0]["values"]):
+                if result["value"] == "Home":
+                    home_wins_odds = result["odd"]
+                elif result["value"] == "Draw":
+                    draw_odds = result["odd"]
+                elif result["value"] == "Away":
+                    away_wins_odds = result["odd"]
+            return [home_wins_odds, draw_odds, away_wins_odds]
+        else: 
+            print("Partita non trovata")
+            return [-1, -1, -1]
