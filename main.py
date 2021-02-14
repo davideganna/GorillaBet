@@ -8,18 +8,13 @@ from Helper import Helper
 from BettingStrategy import *
 from ReadableBettingStrategy import ReadableBettingStrategy
 from CacheHelper import CacheHelper as cache
-
+import json
 ############## Modify this to test different codes ##############
-tester = "Varsa" # "Eim", "Jay", "Varsa"
+tester = "Eim" # "Eim", "Jay", "Varsa"
 #################################################################
 if tester == "Eim":
-    API.GetAllSquadre()
-    eim_headers = {
-        'x-rapidapi-host': "v3.football.api-sports.io",
-        'x-rapidapi-key': "" # Chiave Eim
-    }
-    API.headers = eim_headers
-
+    cache.GetFromFile("test.json")
+    print(json.dumps(cache.GetFromFile("test.json")))
 elif tester == "Jay":
     jay_headers = {
         'x-rapidapi-host': "v3.football.api-sports.io",

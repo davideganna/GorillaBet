@@ -1,4 +1,5 @@
 import os.path, time, datetime, pathlib, json
+from pathlib import Path
 
 class CacheHelper:
     """Classe per gestire la cache"""
@@ -31,4 +32,7 @@ class CacheHelper:
         return False
     @staticmethod 
     def GetFilePath(fileName):
-         return os.path.join(CacheHelper.filePath, fileName)
+        data_folder = Path(CacheHelper.filePath)
+        file_to_open = data_folder / fileName
+        print(file_to_open)
+        return file_to_open
