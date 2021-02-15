@@ -10,11 +10,11 @@ from ReadableBettingStrategy import ReadableBettingStrategy
 from CacheHelper import CacheHelper as cache
 import json
 ############## Modify this to test different codes ##############
-tester = "Varsa" # "Eim", "Jay", "Varsa"
+tester = input("Tester: ").lower() # "Eim", "Jay", "Varsa"
 #################################################################
-if tester == "Eim":
+if tester == "eim":
     print(json.dumps(cache.GetFromFile("test.json")))
-elif tester == "Jay":
+elif tester == "jay":
     jay_headers = {
         'x-rapidapi-host': "v3.football.api-sports.io",
         'x-rapidapi-key': "648939b99aca43ba86c7c75455b9fc61" # Chiave Jay
@@ -35,7 +35,7 @@ elif tester == "Jay":
     print(f"[BWIN] Draw: {draw}")
     print(f"[BWIN] {squadra_away} wins: {away}")
 
-elif tester == "Varsa":
+elif tester == "varsa":
     varsa_headers = {
         'x-rapidapi-host': "v3.football.api-sports.io",
         'x-rapidapi-key': "fbcab0dc26060c039332cb3bd8f2d62a"
