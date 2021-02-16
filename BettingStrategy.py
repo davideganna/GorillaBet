@@ -129,7 +129,7 @@ def create_stats_matrix(squadra_home, squadra_away):
 
     y.add_column(f"Exp goals vs {squadra_away}", E[:,0])
     y.add_column(f"Exp goals vs {squadra_home}", E[:,1])
-    #print(y) # <------ FOR DEBUGGING PURPOSES
+    print(y) # <------ FOR DEBUGGING PURPOSES
     return M
 
 def calc_poisson_goals(squadra_home, squadra_away):

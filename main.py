@@ -20,8 +20,8 @@ elif tester == "jay":
         'x-rapidapi-key': "648939b99aca43ba86c7c75455b9fc61" # Chiave Jay
     }
     API.headers = jay_headers
-    squadra_home = "Inter"
-    squadra_away = "Lazio"
+    squadra_home = "Milan"
+    squadra_away = "Inter"
     squadra_home = squadra_home.lower()
     squadra_away = squadra_away.lower()
     game = squadra_home + squadra_away
