@@ -13,6 +13,27 @@ _FILE_PATH_ = "SourceFiles\\"
 class FileHelper(object):
 
     @staticmethod
+    def compare_odds(program_odds, bwin_odds):
+        positive_odds = []
+        for i in range(len(program_odds)):
+            positive_odds.append(bwin_odds[i] - program_odds[i])
+            if positive_odds[i] < 0:
+                positive_odds[i] = 0
+        return positive_odds
+    
+    @staticmethod
+    def get_flexible_names(squadra_home, squadra_away):
+        if squadra_home == "milan":
+            squadra_home = "ac milan"
+        elif squadra_away == "milan":
+            squadra_away = "ac milan"
+        if squadra_home == "roma":
+            squadra_home = "as roma"
+        elif squadra_away == "roma":
+            squadra_away = "as roma"
+        return  [squadra_home, squadra_away]
+
+    @staticmethod
     def GetFilePath(fileName):
         path = os.path.realpath(fileName)
         #return os.path.join(_FILE_PATH, fileName)
@@ -67,12 +88,3 @@ class FileHelper(object):
         newElement.HR = r[21]
         newElement.AR = r[22]  
         return newElement
-
-    @staticmethod
-    def compare_odds(program_odds, bwin_odds):
-        positive_odds = []
-        for i in range(len(program_odds)):
-            positive_odds.append(bwin_odds[i] - program_odds[i])
-            if positive_odds[i] < 0:
-                positive_odds[i] = 0
-        return positive_odds

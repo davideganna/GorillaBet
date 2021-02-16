@@ -20,20 +20,21 @@ elif tester == "jay":
         'x-rapidapi-key': "648939b99aca43ba86c7c75455b9fc61" # Chiave Jay
     }
     API.headers = jay_headers
-    squadra_home = "Milan"
-    squadra_away = "Inter"
+    squadra_home = "milan"
+    squadra_away = "inter"
     squadra_home = squadra_home.lower()
     squadra_away = squadra_away.lower()
-    game = squadra_home + squadra_away
     [GPh, GPa] = calc_poisson_goals(squadra_home, squadra_away)
     [OHW, OD, OAW] = calc_odds(GPh, GPa)
     print(f"[Bot] {squadra_home} wins: {OHW:.4}")
     print(f"[Bot] Draw: {OD:.4}")
     print(f"[Bot] {squadra_away} wins: {OAW:.4}")
+    [squadra_home, squadra_away] = FileHelper.get_flexible_names(squadra_home, squadra_away)
+    game = squadra_home + squadra_away
     [home, draw, away] = API.Get_Odds_from_match(game)
-    print(f"[BWIN] {squadra_home} wins: {home}")
-    print(f"[BWIN] Draw: {draw}")
-    print(f"[BWIN] {squadra_away} wins: {away}")
+    print(f"[BWin] {squadra_home} wins: {home}")
+    print(f"[BWin] Draw: {draw}")
+    print(f"[BWin] {squadra_away} wins: {away}")
 
 elif tester == "varsa":
     varsa_headers = {
