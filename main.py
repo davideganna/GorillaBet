@@ -20,8 +20,8 @@ elif tester == "jay":
         'x-rapidapi-key': "648939b99aca43ba86c7c75455b9fc61" # Chiave Jay
     }
     API.headers = jay_headers
-    squadra_home = "milan"
-    squadra_away = "inter"
+    squadra_home = "roma"
+    squadra_away = "milan"
     squadra_home = squadra_home.lower()
     squadra_away = squadra_away.lower()
     [GPh, GPa] = calc_poisson_goals(squadra_home, squadra_away)
