@@ -1,7 +1,7 @@
 import matplotlib.pyplot as plt 
 import numpy as np
 
-def calc_storico(quote, vittorie):
+def calc_stats(quote, vittorie):
     euro_giocati = np.zeros(len(quote))
     # euro_vinti: Array containing the net won per match
     euro_vinti = np.zeros(len(quote)) 
@@ -20,61 +20,60 @@ def calc_storico(quote, vittorie):
         else:
             storico[n] = euro_giocati[int((n-1)/2)]*quote[int((n-1)/2)]*vittorie[int((n-1)/2)]
     
-    return [euro_giocati, euro_vinti, storico]
+    return euro_vinti, storico.cumsum()
 
-def calc_cumsum(euro_giocati, euro_vinti, storico):
-    euro_giocati_cumsum = euro_giocati.cumsum()
-    euro_vinti_cumsum = euro_vinti.cumsum()
-    storico_cumsum = storico.cumsum()
-    return [euro_giocati_cumsum, euro_vinti_cumsum, storico_cumsum]
 
 def calc_updated_cumsum(euro_vinti, previous_storico_cumsum):
-    #print(f"Euro vinti in calc_updated_cumsum 1: {euro_vinti}")
     euro_vinti = np.insert(euro_vinti, 0, previous_storico_cumsum[-1])
-    #print(f"Euro vinti in calc_updated_cumsum 2: {euro_vinti}")
     euro_vinti_cumsum = euro_vinti.cumsum()
     euro_vinti_cumsum = np.delete(euro_vinti_cumsum, 0)
     return euro_vinti_cumsum
 
+# Main
+quote_all = []
+vittorie_all = []
 
 # Giornata 22
-quote_22 = [3.5, 3.2, 3.5, 3.5, 4.25, 4.5, 2.8, 4.4, 4, 3.4]
-vittorie_22 = [1, 1, 1, 0, 0, 0, 1, 0, 0, 0]
+quote = [3.5, 3.2, 3.5, 3.5, 4.25, 4.5, 2.8, 4.4, 4, 3.4]
+vittorie = [1, 1, 1, 0, 0, 0, 1, 0, 0, 0]
 
-[euro_giocati, euro_vinti, storico] = calc_storico(quote_22, vittorie_22)
-[euro_giocati_cumsum, euro_vinti_cumsum_22, storico_cumsum_22] = calc_cumsum(euro_giocati, euro_vinti, storico)
+euro_vinti, storico_cumsum = calc_stats(quote, vittorie)
+
+quote_all.extend(quote)
+vittorie_all.extend(vittorie)
 
 # Giornata 23
-quote_23 = [4.1, 2.55, 4.75, 3.7, 5.25, 7.25]
-vittorie_23 = [0, 1, 0, 0, 0, 0]
+quote = [4.1, 2.55, 4.75, 3.7, 5.25, 7.25]
+vittorie = [0, 1, 0, 0, 0, 0]
 
-[euro_giocati, euro_vinti, storico] = calc_storico(quote_23, vittorie_23)
-[euro_giocati_cumsum, euro_vinti_cumsum_23, storico_cumsum_23] = calc_cumsum(euro_giocati, euro_vinti, storico)
-euro_vinti_cumsum_23 = calc_updated_cumsum(euro_vinti, storico_cumsum_22)
-storico_cumsum = np.concatenate([storico_cumsum_22, euro_vinti_cumsum_23])
+euro_vinti, storico_cumsum_23 = calc_stats(quote, vittorie)
+euro_vinti_cumsum = calc_updated_cumsum(euro_vinti, storico_cumsum)
+storico_cumsum = np.concatenate([storico_cumsum, euro_vinti_cumsum])
+
+quote_all.extend(quote)
+vittorie_all.extend(vittorie)
 
 # Giornata 24
-quote_24 = [3.1, 3.5, 4.1, 4.1, 3.5, 7, 14.5, 3.1]
-vittorie_24 = [1, 0, 1, 0, 0, 0, 0, 0]
+quote = [3.1, 3.5, 4.1, 4.1, 3.5, 7, 14.5, 3.1]
+vittorie = [1, 0, 1, 0, 0, 0, 0, 0]
 
-[euro_giocati, euro_vinti, storico] = calc_storico(quote_24, vittorie_24)
-[euro_giocati_cumsum, euro_vinti_cumsum_24, storico_cumsum_24] = calc_cumsum(euro_giocati, euro_vinti, storico)
-euro_vinti_cumsum_24 = calc_updated_cumsum(euro_vinti, storico_cumsum)
-storico_cumsum = np.concatenate([storico_cumsum, euro_vinti_cumsum_24])
+euro_vinti, storico_cumsum_24 = calc_stats(quote, vittorie)
+euro_vinti_cumsum = calc_updated_cumsum(euro_vinti, storico_cumsum)
+storico_cumsum = np.concatenate([storico_cumsum, euro_vinti_cumsum])
+
+quote_all.extend(quote)
+vittorie_all.extend(vittorie)
 
 ####### Stats #######
-#storico_cumsum = np.concatenate([storico_cumsum_22, storico_cumsum_23])
 print(f"Guadagno: {storico_cumsum[-1]:.2f}€")
-quote = np.concatenate([quote_22, quote_23, quote_24])
-vittorie = np.concatenate([vittorie_22, vittorie_23, vittorie_24])
 
 ####### Plot #######
-x = range(len(quote))
+x = range(len(quote_all))
 x1 = range(len(storico_cumsum))
 fig, axs = plt.subplots(3)
 axs[0].plot(x1, storico_cumsum, "r+--", label = "Euro vinti (netto)")
-axs[1].plot(x, quote, "b*--", label = "Quote giocate")
-axs[2].plot(x, vittorie, "mh", label = "Schedine vinte/perse")
+axs[1].plot(x, quote_all, "b*--", label = "Quote giocate")
+axs[2].plot(x, vittorie_all, "mh", label = "Schedine vinte/perse")
 plt.suptitle("GorillaBet") 
 # Labels
 axs[0].set(xlabel = "Schedine giocate", ylabel = "Euro")
