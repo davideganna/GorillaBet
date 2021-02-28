@@ -21,7 +21,7 @@ elif tester == "jay":
     }
     API.headers = jay_headers
     squadra_home = "roma"
-    squadra_away = "milan"
+    squadra_away = "sampdoria"
     squadra_home = squadra_home.lower()
     squadra_away = squadra_away.lower()
     [GPh, GPa] = calc_poisson_goals(squadra_home, squadra_away)
