@@ -46,7 +46,7 @@ vittorie_all.extend(vittorie)
 quote = [4.1, 2.55, 4.75, 3.7, 5.25, 7.25]
 vittorie = [0, 1, 0, 0, 0, 0]
 
-euro_vinti, storico_cumsum_23 = calc_stats(quote, vittorie)
+euro_vinti, _ = calc_stats(quote, vittorie)
 euro_vinti_cumsum = calc_updated_cumsum(euro_vinti, storico_cumsum)
 storico_cumsum = np.concatenate([storico_cumsum, euro_vinti_cumsum])
 
@@ -57,7 +57,7 @@ vittorie_all.extend(vittorie)
 quote = [3.1, 3.5, 4.1, 4.1, 3.5, 7, 14.5, 3.1]
 vittorie = [1, 0, 1, 0, 0, 0, 0, 0]
 
-euro_vinti, storico_cumsum_24 = calc_stats(quote, vittorie)
+euro_vinti, _ = calc_stats(quote, vittorie)
 euro_vinti_cumsum = calc_updated_cumsum(euro_vinti, storico_cumsum)
 storico_cumsum = np.concatenate([storico_cumsum, euro_vinti_cumsum])
 
