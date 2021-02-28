@@ -43,9 +43,6 @@ vittorie_22 = [1, 1, 1, 0, 0, 0, 1, 0, 0, 0]
 
 [euro_giocati, euro_vinti, storico] = calc_storico(quote_22, vittorie_22)
 [euro_giocati_cumsum, euro_vinti_cumsum_22, storico_cumsum_22] = calc_cumsum(euro_giocati, euro_vinti, storico)
-print(f"Euro vinti - Giornata 22: {euro_vinti}")
-print(f"Storico cumsum 22: {storico_cumsum_22}")
-print(f"Euro vinti cumsum 22\n: {euro_vinti_cumsum_22}")
 
 # Giornata 23
 quote_23 = [4.1, 2.55, 4.75, 3.7, 5.25, 7.25]
@@ -53,32 +50,23 @@ vittorie_23 = [0, 1, 0, 0, 0, 0]
 
 [euro_giocati, euro_vinti, storico] = calc_storico(quote_23, vittorie_23)
 [euro_giocati_cumsum, euro_vinti_cumsum_23, storico_cumsum_23] = calc_cumsum(euro_giocati, euro_vinti, storico)
-
 euro_vinti_cumsum_23 = calc_updated_cumsum(euro_vinti, storico_cumsum_22)
-print(f"Euro vinti - Giornata 23: {euro_vinti}")
-print(f"Storico cumsum 23: {storico_cumsum_23}")
-print(f"Euro vinti cumsum 23\n: {euro_vinti_cumsum_23}")
-
 storico_cumsum = np.concatenate([storico_cumsum_22, euro_vinti_cumsum_23])
 
 # Giornata 24
-quote_24 = [3.1]
-vittorie_24 = [1]
+quote_24 = [3.1, 3.5, 4.1, 4.1, 3.5, 7, 14.5, 3.1]
+vittorie_24 = [1, 0, 1, 0, 0, 0, 0, 0]
 
 [euro_giocati, euro_vinti, storico] = calc_storico(quote_24, vittorie_24)
 [euro_giocati_cumsum, euro_vinti_cumsum_24, storico_cumsum_24] = calc_cumsum(euro_giocati, euro_vinti, storico)
-print(f"Euro vinti - Giornata 24: {euro_vinti}")
-print(f"Storico cumsum 24: {storico_cumsum_24}")
-print(f"Euro vinti cumsum 24: {euro_vinti_cumsum_24}")
-
 euro_vinti_cumsum_24 = calc_updated_cumsum(euro_vinti, storico_cumsum)
-
 storico_cumsum = np.concatenate([storico_cumsum, euro_vinti_cumsum_24])
+
 ####### Stats #######
 #storico_cumsum = np.concatenate([storico_cumsum_22, storico_cumsum_23])
 print(f"Guadagno: {storico_cumsum[-1]:.2f}€")
-quote = np.concatenate([quote_22, quote_23])
-vittorie = np.concatenate([vittorie_22, vittorie_23])
+quote = np.concatenate([quote_22, quote_23, quote_24])
+vittorie = np.concatenate([vittorie_22, vittorie_23, vittorie_24])
 
 ####### Plot #######
 x = range(len(quote))
