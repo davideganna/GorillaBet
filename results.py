@@ -54,8 +54,8 @@ quote_all.extend(quote)
 vittorie_all.extend(vittorie)
 
 # Giornata 24
-quote = [3.1, 3.5, 4.1, 4.1, 3.5, 7, 14.5, 3.1]
-vittorie = [1, 0, 1, 0, 0, 0, 0, 0]
+quote = [3.1, 3.5, 4.1, 4.1, 3.5, 7, 14.5, 3.1, 5, 3.4]
+vittorie = [1, 0, 1, 0, 0, 0, 0, 0, 0, 0]
 
 euro_vinti, _ = calc_stats(quote, vittorie)
 euro_vinti_cumsum = calc_updated_cumsum(euro_vinti, storico_cumsum)
