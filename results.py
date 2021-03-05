@@ -64,6 +64,17 @@ storico_cumsum = np.concatenate([storico_cumsum, euro_vinti_cumsum])
 quote_all.extend(quote)
 vittorie_all.extend(vittorie)
 
+# Giornata 25
+quote = [6.5, 11.5, 3.4, 3.19, 3.7, 4.75, 3.1, 3.1, 7.25, 3.8, 3.5, 5.75]
+vittorie = [0, 0, 1, 0, 1, 0, 1, 0, 0, 0, 0, 0]
+
+euro_vinti, _ = calc_stats(quote, vittorie)
+euro_vinti_cumsum = calc_updated_cumsum(euro_vinti, storico_cumsum)
+storico_cumsum = np.concatenate([storico_cumsum, euro_vinti_cumsum])
+
+quote_all.extend(quote)
+vittorie_all.extend(vittorie)
+
 ####### Stats #######
 print(f"Guadagno: {storico_cumsum[-1]:.2f}€")
 
