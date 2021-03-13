@@ -19,7 +19,6 @@ partite_juve = df_csv[
 GTFc = partite_juve[partite_juve["HomeTeam"] == "Juventus"]["HomeGoals"].sum()
 GTFt = partite_juve[partite_juve["AwayTeam"] == "Juventus"]["AwayGoals"].sum()
 
-
 d = {"Teams": SquadraList}
 df = pd.DataFrame(data=d)
 print(df)
