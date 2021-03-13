@@ -71,9 +71,3 @@ SquadraDict = {
 Match2FixtureId_Dict = {
     
 }
-
-class Esito:
-    """Descrive chi vince"""
-    Draw = 0
-    HomeWon = 1
-    AwayWon = 2

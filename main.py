@@ -1,14 +1,9 @@
 from ApiInterface import DashApi as API
 from FileHelper import FileHelper
-from Row import Row
 from Enumerators import *
-from Partita import Partita 
-from Squadra import Squadra
-from Helper import Helper
 from BettingStrategy import *
-from ReadableBettingStrategy import ReadableBettingStrategy
-from CacheHelper import CacheHelper as cache
 import json
+
 ############## Modify this to test different codes ##############
 tester = input("Tester: ").lower() # "Eim", "Jay", "Varsa"
 #################################################################
@@ -20,8 +15,8 @@ elif tester == "jay":
         'x-rapidapi-key': "648939b99aca43ba86c7c75455b9fc61" # Chiave Jay
     }
     API.headers = jay_headers
-    squadra_home = "spezia"
-    squadra_away = "benevento"
+    squadra_home = "milan"
+    squadra_away = "napoli"
     squadra_home = squadra_home.lower()
     squadra_away = squadra_away.lower()
     [GPh, GPa] = calc_poisson_goals(squadra_home, squadra_away)

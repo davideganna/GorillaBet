@@ -1,6 +1,6 @@
 import csv
-from Row import Row
 import json, os.path
+import pandas as pd
 
 # .csv results source: https://www.football-data.co.uk/italym.php
 _FILE_LIST_ = ["latest_results.csv"]
@@ -36,28 +36,15 @@ class FileHelper(object):
     @staticmethod
     def GetFilePath(fileName):
         path = os.path.realpath(fileName)
-        #return os.path.join(_FILE_PATH, fileName)
         return path
 
     @staticmethod
-    def GetRowsFromFiles():
-        result = []
-        for file in _FILE_LIST_:
-            fullPath = FileHelper.GetFilePath(file)
-            #inserire un controllo se il file esiste o meno
+    def get_dataframe():
+        fullPath = FileHelper.GetFilePath(_FILE_LIST_[0])
+        with open(fullPath) as sourceFile:
             with open(fullPath) as sourceFile:
-                sourceFile = csv.reader(sourceFile, delimiter=',')
-                isFirst = True
-                firstRow = ""
-                for r in sourceFile:
-                    #va modellizato il nuovo elemento e salvato in result
-                    if  isFirst != True:
-                        newElement = FileHelper.Mapping(firstRow, r)
-                        result.append(newElement)
-                    else:
-                        firstRow = r
-                        isFirst = False
-        return result
+                df = pd.read_csv(sourceFile)
+        return df
 
     @staticmethod
     def Mapping(firstRow, r):

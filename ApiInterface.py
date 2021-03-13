@@ -2,14 +2,14 @@ import http.client
 import urllib.parse
 import json, asyncio
 from Enumerators import *
-from CacheHelper import CacheHelper as cache
+
 class DashApi:
     """Classe middleware per l'API"""
 
     url = "v3.football.api-sports.io"
     headers = {
         'x-rapidapi-host': url,
-        'x-rapidapi-key': "" # It's replaced depending on the tester
+        'x-rapidapi-key': "" # It is replaced depending on the tester
     }
 
     @staticmethod
