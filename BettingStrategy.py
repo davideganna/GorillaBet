@@ -23,7 +23,7 @@ d = {
     "Giornate": giornate
 }
 df = pd.DataFrame(data=d)
-
+ 
 print(df)
 
 
