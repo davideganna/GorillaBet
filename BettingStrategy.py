@@ -24,7 +24,7 @@ d = {
 }
 df = pd.DataFrame(data=d)
  
-print(df)
+print(df) 
 
 
 
