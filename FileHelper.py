@@ -8,8 +8,6 @@ _FILE_LIST_ = ["latest_results.csv"]
 _FILE_PATH_ = "SourceFiles\\"
 """Path della cartella dei file"""
 
-
-
 class FileHelper(object):
 
     @staticmethod
@@ -45,33 +43,3 @@ class FileHelper(object):
             with open(fullPath) as sourceFile:
                 df = pd.read_csv(sourceFile)
         return df
-
-    @staticmethod
-    def Mapping(firstRow, r):
-        newElement = Row()
-        #da rivedere nel caso i merdoni del file cambiano la struttura del file nella remota possibilità
-        #per Davide: si, sono un merdone
-        newElement.div = r[0]
-        newElement.date = r[1]
-        newElement.time = r[2]
-        newElement.homeTeam = r[3]
-        newElement.awayTeam = r[4]
-        newElement.FTHG = r[5]
-        newElement.FTAG = r[6]
-        newElement.FTR = r[7]
-        newElement.HTHG = r[8]
-        newElement.HTAG = r[9]
-        newElement.HTR = r[10]
-        newElement.HS = r[11]
-        newElement.AS = r[12]
-        newElement.HST = r[13]
-        newElement.AST = r[14]
-        newElement.HF = r[15]
-        newElement.AF = r[16]
-        newElement.HC = r[17]
-        newElement.AC = r[18]
-        newElement.HY = r[19]
-        newElement.AY = r[20]
-        newElement.HR = r[21]
-        newElement.AR = r[22]  
-        return newElement

@@ -1,28 +1,27 @@
 class SquadraEnum:
     """Enumeratore per il nome delle squadre"""
-    Atalanta = "atalanta"
-    Benevento = "benevento"
-    Bologna = "bologna"
-    Cagliari = "cagliari"
-    Crotone = "crotone"
-    Fiorentina = "fiorentina"
-    Genoa = "genoa"
-    Inter = "inter"
-    Juventus = "juventus"
-    Lazio = "lazio"
-    Milan = "milan"
-    Napoli = "napoli"
-    Parma = "parma"
-    Roma = "roma"
-    Sampdoria = "sampdoria"
-    Sassuolo = "sassuolo"
-    Spezia = "spezia"
-    Torino = "torino"
-    Udinese = "udinese"
-    Verona = "verona"
+    Atalanta = "Atalanta"
+    Benevento = "Benevento"
+    Bologna = "Bologna"
+    Cagliari = "Cagliari"
+    Crotone = "Crotone"
+    Fiorentina = "Fiorentina"
+    Genoa = "Genoa"
+    Inter = "Inter"
+    Juventus = "Juventus"
+    Lazio = "Lazio"
+    Milan = "Milan"
+    Napoli = "Napoli"
+    Parma = "Parma"
+    Roma = "Roma"
+    Sampdoria = "Sampdoria"
+    Sassuolo = "Sassuolo"
+    Spezia = "Spezia"
+    Torino = "Torino"
+    Udinese = "Udinese"
+    Verona = "Verona"
 
-# Penso sia meglio fare una lista perche dobbiamo iterare. RM: Si, ma usa gli enumeratori
-SquadraList = [
+Squadre = [
     SquadraEnum.Atalanta,
     SquadraEnum.Benevento,
     SquadraEnum.Bologna,
@@ -66,8 +65,4 @@ SquadraDict = {
     "torino"    : 17,
     "udinese"   : 18,
     "verona"    : 19
-}
-
-Match2FixtureId_Dict = {
-    
 }

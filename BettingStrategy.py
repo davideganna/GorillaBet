@@ -7,18 +7,24 @@ import pandas as pd
 
 ###################### Test - Jay ###################### 
 
-df_csv = FileHelper.get_dataframe()
-df_csv = df_csv[['HomeTeam','AwayTeam','FTHG','FTAG']]
-df_csv = df_csv.rename(columns={'FTHG': 'HomeGoals', 'FTAG': 'AwayGoals'})
+df = FileHelper.get_dataframe()
+df = df[["HomeTeam", "AwayTeam", "FTHG", "FTAG"]]
+df = df.rename(columns={"FTHG": "HomeGoals", "FTAG": "AwayGoals"})
 
-partite_juve = df_csv[
-    (df_csv['HomeTeam'] == "Juventus") | 
-    (df_csv['AwayTeam'] == "Juventus")
-]
 
-GTFc = partite_juve[partite_juve["HomeTeam"] == "Juventus"]["HomeGoals"].sum()
-GTFt = partite_juve[partite_juve["AwayTeam"] == "Juventus"]["AwayGoals"].sum()
+giornate = []
+for squadra in Squadre:
+    giornate.append(
+        df["HomeTeam"].value_counts()[squadra] + df["AwayTeam"].value_counts()[squadra]
+    )
 
-d = {"Teams": SquadraList}
+d = {
+    "Teams": Squadre,
+    "Giornate": giornate
+}
 df = pd.DataFrame(data=d)
+
 print(df)
+
+
+
