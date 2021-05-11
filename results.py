@@ -20,7 +20,7 @@ def calc_stats(quote, vittorie):
         else:
             storico[n] = euro_giocati[int((n-1)/2)]*quote[int((n-1)/2)]*vittorie[int((n-1)/2)]
     
-    return euro_vinti, storico.cumsum()
+    return euro_vinti, storico.cumsum() 
 
 
 def calc_updated_cumsum(euro_vinti, previous_storico_cumsum):
