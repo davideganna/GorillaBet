@@ -5,6 +5,16 @@ from prettytable import PrettyTable
 import math
 import pandas as pd
 
+###################### Functions ###################### 
+
+def poisson_pmf(mu, k):
+    """Returns the Poisson PMF f(k)\n
+    mu = Expected rate of goals\n
+    k  = Number of goals to evaluate\n
+    """
+    pmf = math.exp(-mu)*(mu**k)/math.factorial(k)
+    return pmf
+
 ###################### Test - Jay ###################### 
 
 df = FileHelper.get_dataframe()
@@ -81,7 +91,4 @@ d = {
 }
 df = pd.DataFrame(data=d)
 print(df)
-
-
-
 

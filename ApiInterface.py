@@ -9,7 +9,7 @@ class DashApi:
     url = "v3.football.api-sports.io"
     headers = {
         'x-rapidapi-host': url,
-        'x-rapidapi-key': "" # It is replaced depending on the tester
+        'x-rapidapi-key': "" # It's replaced depending on the tester
     }
 
     @staticmethod
@@ -39,6 +39,21 @@ class DashApi:
         fileName : str = "AllSquadre"
         endpoint : str = "/teams?league=135&season=2020"
         return GetResult(endpoint, fileName)
+
+    @staticmethod
+    def GetFixturesForTxt():
+        conn = http.client.HTTPSConnection(DashApi.url)
+        conn.request(
+            "GET", "/fixtures?next=10&league=135&season=2020", headers=DashApi.headers)
+        res = conn.getresponse()
+        data = res.read()
+        jsonResult = DashApi.GetJsonResponse(data)
+        teams_home = []
+        teams_away = []
+        for result in jsonResult["response"]:
+            teams_home.append(result["teams"]["home"]["name"])
+            teams_away.append(result["teams"]["away"]["name"])
+        return teams_home, teams_away
 
     @staticmethod
     def Create_Match_2_Dict():
