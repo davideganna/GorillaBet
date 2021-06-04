@@ -6,14 +6,32 @@ import math
 import pandas as pd
 
 ###################### Functions ###################### 
-
+def calc_odds(GPh, GPa):
+    """Based on goal probability vectors, calculates the odds matrix O.\n
+    GPh = Goal probabilities at home\n
+    GPa = Goal probabilities away\n
+    Returns:\n
+    O = Odds vector\n
+    """
+    [PHW, PD, PAW] = np.zeros(3) # Probability Home Wins / Draw / Away Wins
+    P = np.zeros((len(GPh),len(GPa)))
+    for m in range(0, len(GPh)):
+        for n in range(0, len(GPa)):
+            P[m,n] = GPh[m]*GPa[n]
+            if m > n:
+                PHW = PHW + P[m,n]
+            elif m == n:
+                PD = PD + P[m,n]
+            else:
+                PAW = PAW + P[m,n]
+    return [1/PHW, 1/PD, 1/PAW]
+    
 def poisson_pmf(mu, k):
     """Returns the Poisson PMF f(k)\n
     mu = Expected rate of goals\n
     k  = Number of goals to evaluate\n
     """
-    pmf = math.exp(-mu)*(mu**k)/math.factorial(k)
-    return pmf
+    return math.exp(-mu)*(mu**k)/math.factorial(k)
 
 ###################### Test - Jay ###################### 
 
@@ -92,3 +110,18 @@ d = {
 df = pd.DataFrame(data=d)
 print(df)
 
+# Test with Atalanta vs Juventus
+home_team = "Atalanta"
+away_team = "Juventus"
+
+exp_goals_H = df.loc[df["Squadra"] == home_team]["ASh"].sum() * df.loc[df["Squadra"] == away_team]["DSa"].sum() * df["GFc"].sum() / df["Giornate"].sum()
+exp_goals_A = df.loc[df["Squadra"] == away_team]["ASa"].sum() * df.loc[df["Squadra"] == home_team]["DSh"].sum() * df["GFt"].sum() / df["Giornate"].sum()
+
+GPh = np.zeros(5) # Goal probabilities at home
+GPa = np.zeros(5) # Goal probabilities away
+for n in range(0, 5):
+    GPh[n] = poisson_pmf(exp_goals_H, n)
+    GPa[n] = poisson_pmf(exp_goals_A, n)
+
+[OHW, OD, OAW] = calc_odds(GPh, GPa)
+print(OHW, OD, OAW)

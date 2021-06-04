@@ -5,7 +5,6 @@ from Enumerators import *
 
 class DashApi:
     """Classe middleware per l'API"""
-
     url = "v3.football.api-sports.io"
     headers = {
         'x-rapidapi-host': url,
