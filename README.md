@@ -1,3 +1,3 @@
 # GorillaBet
-GorillaBet - Automated Betting Software
+Automated Betting Software
 
