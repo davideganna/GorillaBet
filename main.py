@@ -6,6 +6,7 @@ import json
 
 ############## Modify this to test different codes ##############
 #tester = input("Tester: ").lower() # "Eim", "Jay", "Varsa"
+tester = "jay"
 #################################################################
 
 if tester == "jay":
@@ -19,18 +20,21 @@ if tester == "jay":
     }
     API.headers = jay_headers
     FileHelper.txt_generator(38)
-    squadra_home = "atalanta"
-    squadra_away = "juventus"
-    squadra_home = squadra_home.lower()
-    squadra_away = squadra_away.lower()
-    [GPh, GPa] = calc_poisson_goals(squadra_home, squadra_away)
+
+    home_team = "Atalanta"
+    away_team = "Juventus"
+
+    df = create_df()
+
+    [GPh, GPa] = calc_exp_goals(df, home_team, away_team)
     [OHW, OD, OAW] = calc_odds(GPh, GPa)
+
+    [squadra_home, squadra_away] = FileHelper.get_flexible_names(home_team, away_team)
+    [home, draw, away] = API.Get_Odds_from_match(home_team + away_team)
+    
     print(f"[Bot] {squadra_home} wins: {OHW:.4}")
     print(f"[Bot] Draw: {OD:.4}")
     print(f"[Bot] {squadra_away} wins: {OAW:.4}")
-    [squadra_home, squadra_away] = FileHelper.get_flexible_names(squadra_home, squadra_away)
-    game = squadra_home + squadra_away
-    [home, draw, away] = API.Get_Odds_from_match(game)
     print(f"[BWin] {squadra_home} wins: {home}")
     print(f"[BWin] Draw: {draw}")
     print(f"[BWin] {squadra_away} wins: {away}")
