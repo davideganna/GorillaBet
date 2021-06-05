@@ -1,5 +1,6 @@
 import matplotlib.pyplot as plt 
 import numpy as np
+import os
 
 def calc_stats(quote, vittorie):
     euro_giocati = np.zeros(len(quote))
@@ -32,7 +33,10 @@ def calc_updated_cumsum(euro_vinti, previous_storico_cumsum):
 def txt_2_results(turn_number):
     quote = []
     vittorie = []
-    with open(f'Schedina_{turn_number}.txt', 'r') as f:
+    script_dir = os.path.dirname(__file__)
+    rel_path = "Schedine" + f"\schedina_{turn_number}.txt"
+    abs_file_path = os.path.join(script_dir, rel_path)
+    with open(abs_file_path, "r") as f:
         for line in f:
             quote.append(line.partition("@")[2].partition("\n")[0])
             vittorie.append(line.partition(")")[0]) 
